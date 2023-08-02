@@ -1,0 +1,901 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="Flask开发基础,转发和重定向">
+  
+    <meta name="description" content="简单的对Flask进行讲解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask搭建网站">
+<meta property="og:url" content="http://example.com/2022/01/13/Flask%E6%90%AD%E5%BB%BA%E7%BD%91%E7%AB%99/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简单的对Flask进行讲解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/flask-1.png">
+<meta property="article:published_time" content="2022-01-13T07:16:07.000Z">
+<meta property="article:modified_time" content="2023-07-31T10:58:42.874Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="后端">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/flask-1.png">
+  
+  
+  
+  <title>Flask搭建网站 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"↙","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":"UA-233159895-1","gtag":"G-XKM51WKGR7","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"mPhovhHHyKg2LpAcQhS6tjAw-gzGzoHsz","app_key":"6W2dsSWjVfMOOkXrNbFWOSDN","server_url":"https://mphovhhh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-233159895-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-XKM51WKGR7', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XKM51WKGR7');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Flask搭建网站"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-01-13 15:16" pubdate>
+          2022年1月13日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          56 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Flask搭建网站</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="Flask"><a href="#Flask" class="headerlink" title="Flask"></a>Flask</h2><p>安装环境</p>
+<p>pip install flask</p>
+<p>pip install Jinjia2</p>
+<p>创建python环境的项目</p>
+<p>然后创建python文件，并设置Flask环境</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">app = Flask(__name__,<br>            static_url_path=<span class="hljs-string">&#x27;/static&#x27;</span>,<span class="hljs-comment">#静态文件路径</span><br>            static_folder=<span class="hljs-string">&#x27;static&#x27;</span>,<br>            template_folder=<span class="hljs-string">&#x27;templages&#x27;</span> <span class="hljs-comment">#模板文件</span><br>            )<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    app.run()<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h3><h4 id="普通路由"><a href="#普通路由" class="headerlink" title="普通路由"></a>普通路由</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">index</span>():<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;wodiu&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>这是普通的路由添加方式</p>
+<h4 id="带参数路由"><a href="#带参数路由" class="headerlink" title="带参数路由"></a>带参数路由</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/aa/&lt;user_id&gt;&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">aaaa</span>(<span class="hljs-params">user_id</span>):<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;wodiu %s&quot;</span>%(user_id)<br></code></pre></td></tr></table></figure>
+
+<p>或者使用下面这种方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> request<br><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/aa&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">ccccc</span>():<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;wodiu %s&quot;</span>%(request.args[<span class="hljs-string">&#x27;aaa&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<p>关于flask.request</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011146423/article/details/88191225">https://blog.csdn.net/u011146423/article/details/88191225</a></p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/flask-1.png" srcset="/img/loading.gif" lazyload alt="image-20220113152615716"></p>
+<h3 id="访问方法设置"><a href="#访问方法设置" class="headerlink" title="访问方法设置"></a>访问方法设置</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/sss&quot;</span>,methods=[<span class="hljs-string">&#x27;POST&#x27;</span>]</span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">a_page</span>():<br>    user_name = request.form.get(<span class="hljs-string">&#x27;uname&#x27;</span>)<br>    user_pass = request.form.get(<span class="hljs-string">&#x27;upass&#x27;</span>)<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;this is a page %s --- %s  hahahaha&quot;</span>%(user_name,user_pass)<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><h4 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h4><p>首先新建templates(最开始定义的环境名称)</p>
+<p>然后新建tempa.html,然后代码如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br><br> <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>i am father temp1<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><br>&#123;% block contentBlock %&#125;<br> <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>father html temp2<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>&#123;% endblock %&#125;<br><br><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>i am father temp last3<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>子页面定义如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% extends &#x27;tempa.html&#x27; %&#125;<br><br>&#123;% block contentBlock %&#125;<br><br>&#123;&#123;super()&#125;&#125;<br><span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>zi mo ban -------&#123;&#123;ida&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span><br><br>&#123;% endblock %&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="python路由部分返回"><a href="#python路由部分返回" class="headerlink" title="python路由部分返回"></a>python路由部分返回</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/daicanshu/&lt;id&gt;&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">bbb</span>(<span class="hljs-params"><span class="hljs-built_in">id</span></span>):<br>    <span class="hljs-keyword">return</span> flask.render_template(<span class="hljs-string">&quot;child.html&quot;</span>,ida=<span class="hljs-built_in">id</span>)<br></code></pre></td></tr></table></figure>
+
+<p>这个还进行了参数传递,ida就是页面要接收的数据</p>
+<h3 id="过滤器部分"><a href="#过滤器部分" class="headerlink" title="过滤器部分"></a>过滤器部分</h3><p>自定义过滤器</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#首先是route</span><br><br><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/list&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">a_list</span>():<br>    aaaaa=[<span class="hljs-string">&quot;1&quot;</span>,<span class="hljs-string">&quot;2&quot;</span>,<span class="hljs-string">&quot;3&quot;</span>]<br>    <span class="hljs-keyword">return</span> flask.render_template(<span class="hljs-string">&quot;tempa.html&quot;</span>,aList=aaaaa)<br>    <br><span class="hljs-comment">#然后定义过滤器</span><br><span class="hljs-meta">@app.template_filter(<span class="hljs-params"><span class="hljs-string">&#x27;dore&#x27;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">do_reverse</span>(<span class="hljs-params">li</span>):<br>    temp = <span class="hljs-built_in">list</span>(li)<br>    temp.reverse()<br>    <span class="hljs-keyword">return</span> temp<br></code></pre></td></tr></table></figure>
+
+<p>html部分</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;&#123;aList | dore&#125;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这句话的意思是将aList这个变量传递给名字叫dore这个过滤器</p>
+<p>jinjia2自带的过滤器</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;&#123; range(1,100) | random &#125;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>random是自带的</p>
+<h3 id="jinjia2的if和for"><a href="#jinjia2的if和for" class="headerlink" title="jinjia2的if和for"></a>jinjia2的if和for</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs html">&#123;% for item in aList %&#125;<br> <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>&#123;&#123;item&#125;&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">hr</span>&gt;</span><br>&#123;% endfor %&#125;<br><br>&#123;% for num in range(1,10) %&#125;<br> <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>&#123;&#123;num&#125;&#125; 号<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span><br>&#123;% endfor %&#125;<br><br>&#123;% if vip == 0 %&#125;<br> <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>你没充值<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br> &#123;% elif vip ==1 %&#125;<br> <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>lv1的内容<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span><br>&#123;% endif %&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><h4 id="第一种-返回一个response"><a href="#第一种-返回一个response" class="headerlink" title="第一种,返回一个response"></a>第一种,返回一个response</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/login&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">login</span>():<br>    response = flask.make_response(<span class="hljs-string">&quot;success&quot;</span>)<br>    response.set_cookie(<span class="hljs-string">&quot;name&quot;</span>,<span class="hljs-string">&quot;wodiu&quot;</span>,max_age=<span class="hljs-number">1000</span>)<br>    response.set_cookie(<span class="hljs-string">&quot;type&quot;</span>,<span class="hljs-string">&quot;0&quot;</span>,max_age=<span class="hljs-number">1000</span>)<br>    <span class="hljs-keyword">return</span> response<br></code></pre></td></tr></table></figure>
+
+
+
+<p>获取的时候</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&quot;/login_success&quot;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">login_success</span>():<br>    vip = <span class="hljs-built_in">int</span>(request.cookies.get(<span class="hljs-string">&quot;type&quot;</span>))<br>    <span class="hljs-keyword">return</span> flask.render_template(<span class="hljs-string">&quot;tempa.html&quot;</span>,vip=vip)<br></code></pre></td></tr></table></figure>
+
+
+
+<p>想要删除的时候</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&#x27;/logout&#x27;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">logout</span>():<br>    response = flask.make_response(<span class="hljs-string">&#x27;退出&#x27;</span>)<br>    response.delete_cookie(<span class="hljs-string">&#x27;name&#x27;</span>)<br>    response.delete_cookie(<span class="hljs-string">&#x27;type&#x27;</span>)<br>    <span class="hljs-keyword">return</span> response<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="第二种-使用变量"><a href="#第二种-使用变量" class="headerlink" title="第二种,使用变量"></a>第二种,使用变量</h4><p>创建session的时候添加变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&#x27;/login/&lt;id&gt;&#x27;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">b_page</span>(<span class="hljs-params"><span class="hljs-built_in">id</span></span>):<br>    <span class="hljs-comment">#设置cookie</span><br>    session[<span class="hljs-string">&#x27;user_id&#x27;</span>]=<span class="hljs-built_in">id</span><br>    session[<span class="hljs-string">&#x27;vip&#x27;</span>] = <span class="hljs-string">&#x27;0&#x27;</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;success&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>删除session中的变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&#x27;/logout2&#x27;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">logout2</span>():<br>    <span class="hljs-comment">#session.pop(&#x27;user_id&#x27;,None)</span><br>    <span class="hljs-comment">#session.pop(&#x27;vip&#x27;,None)</span><br><br>    <span class="hljs-comment">#session[&#x27;user_id&#x27;]=False</span><br><br>    session.clear()<br><br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;logout&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>三种方法</p>
+<ul>
+<li>pop(键)方法</li>
+<li>将值设为False</li>
+<li>clear()方法</li>
+</ul>
+<h3 id="Flask的配置参数"><a href="#Flask的配置参数" class="headerlink" title="Flask的配置参数"></a>Flask的配置参数</h3><p>就是对最开始的app变量进行配置</p>
+<p>举个例子:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#配置加密字符串</span><br>app.config[<span class="hljs-string">&#x27;SECRET_KEY&#x27;</span>]=<span class="hljs-string">&quot;key123&quot;</span><br><span class="hljs-comment">#设置7天有效</span><br>app.config[<span class="hljs-string">&#x27;PERMANENT_SESSION_LIFETIME&#x27;</span>]=timedelta(days=<span class="hljs-number">7</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs nsis">&#123;<br>    <span class="hljs-string">&#x27;DEBUG&#x27;</span>: <span class="hljs-literal">False</span>,  <span class="hljs-comment"># 是否开启Debug模式</span><br>    <span class="hljs-string">&#x27;TESTING&#x27;</span>: <span class="hljs-literal">False</span>,  <span class="hljs-comment"># 是否开启测试模式</span><br>    <span class="hljs-string">&#x27;PROPAGATE_EXCEPTIONS&#x27;</span>: <span class="hljs-literal">None</span>,  <span class="hljs-comment"># 异常传播(是否在控制台打印LOG) 当Debug或者testing开启后,自动为True</span><br>    <span class="hljs-string">&#x27;PRESERVE_CONTEXT_ON_EXCEPTION&#x27;</span>: <span class="hljs-literal">None</span>,  <span class="hljs-comment"># 一两句话说不清楚,一般不用它</span><br>    <span class="hljs-string">&#x27;SECRET_KEY&#x27;</span>: <span class="hljs-literal">None</span>,  <span class="hljs-comment"># 之前遇到过,在启用Session的时候,一定要有它</span><br>    <span class="hljs-string">&#x27;PERMANENT_SESSION_LIFETIME&#x27;</span>: <span class="hljs-number">31</span>,  <span class="hljs-comment"># days , Session的生命周期(天)默认31天</span><br>    <span class="hljs-string">&#x27;USE_X_SENDFILE&#x27;</span>: <span class="hljs-literal">False</span>,  <span class="hljs-comment"># 是否弃用 x_sendfile</span><br>    <span class="hljs-string">&#x27;LOGGER_NAME&#x27;</span>: <span class="hljs-literal">None</span>,  <span class="hljs-comment"># 日志记录器的名称</span><br>    <span class="hljs-string">&#x27;LOGGER_HANDLER_POLICY&#x27;</span>: <span class="hljs-string">&#x27;always&#x27;</span>,<br>    <span class="hljs-string">&#x27;SERVER_NAME&#x27;</span>: <span class="hljs-literal">None</span>,  <span class="hljs-comment"># 服务访问域名</span><br>    <span class="hljs-string">&#x27;APPLICATION_ROOT&#x27;</span>: <span class="hljs-literal">None</span>,  <span class="hljs-comment"># 项目的完整路径</span><br>    <span class="hljs-string">&#x27;SESSION_COOKIE_NAME&#x27;</span>: <span class="hljs-string">&#x27;session&#x27;</span>,  <span class="hljs-comment"># 在cookies中存放session加密字符串的名字</span><br>    <span class="hljs-string">&#x27;SESSION_COOKIE_DOMAIN&#x27;</span>: <span class="hljs-literal">None</span>,  <span class="hljs-comment"># 在哪个域名下会产生session记录在cookies中</span><br>    <span class="hljs-string">&#x27;SESSION_COOKIE_PATH&#x27;</span>: <span class="hljs-literal">None</span>,  <span class="hljs-comment"># cookies的路径</span><br>    <span class="hljs-string">&#x27;SESSION_COOKIE_HTTPONLY&#x27;</span>: <span class="hljs-literal">True</span>,  <span class="hljs-comment"># 控制 cookie 是否应被设置 httponly 的标志，</span><br>    <span class="hljs-string">&#x27;SESSION_COOKIE_SECURE&#x27;</span>: <span class="hljs-literal">False</span>,  <span class="hljs-comment"># 控制 cookie 是否应被设置安全标志</span><br>    <span class="hljs-string">&#x27;SESSION_REFRESH_EACH_REQUEST&#x27;</span>: <span class="hljs-literal">True</span>,  <span class="hljs-comment"># 这个标志控制永久会话如何刷新</span><br>    <span class="hljs-string">&#x27;MAX_CONTENT_LENGTH&#x27;</span>: <span class="hljs-literal">None</span>,  <span class="hljs-comment"># 如果设置为字节数， Flask 会拒绝内容长度大于此值的请求进入，并返回一个 413 状态码</span><br>    <span class="hljs-string">&#x27;SEND_FILE_MAX_AGE_DEFAULT&#x27;</span>: <span class="hljs-number">12</span>,  <span class="hljs-comment"># hours 默认缓存控制的最大期限</span><br>    <span class="hljs-string">&#x27;TRAP_BAD_REQUEST_ERRORS&#x27;</span>: <span class="hljs-literal">False</span>,<br>    <span class="hljs-comment"># 如果这个值被设置为 True ，Flask不会执行 HTTP 异常的错误处理，而是像对待其它异常一样，</span><br>    <span class="hljs-comment"># 通过异常栈让它冒泡地抛出。这对于需要找出 HTTP 异常源头的可怕调试情形是有用的。</span><br>    <span class="hljs-string">&#x27;TRAP_HTTP_EXCEPTIONS&#x27;</span>: <span class="hljs-literal">False</span>,<br>    <span class="hljs-comment"># Werkzeug 处理请求中的特定数据的内部数据结构会抛出同样也是“错误的请求”异常的特殊的 key errors 。</span><br>    <span class="hljs-comment"># 同样地，为了保持一致，许多操作可以显式地抛出 BadRequest 异常。</span><br>    <span class="hljs-comment"># 因为在调试中，你希望准确地找出异常的原因，这个设置用于在这些情形下调试。</span><br>    <span class="hljs-comment"># 如果这个值被设置为 True ，你只会得到常规的回溯。</span><br>    <span class="hljs-string">&#x27;EXPLAIN_TEMPLATE_LOADING&#x27;</span>: <span class="hljs-literal">False</span>,<br>    <span class="hljs-string">&#x27;PREFERRED_URL_SCHEME&#x27;</span>: <span class="hljs-string">&#x27;http&#x27;</span>,  <span class="hljs-comment"># 生成URL的时候如果没有可用的 URL 模式话将使用这个值</span><br>    <span class="hljs-string">&#x27;JSON_AS_ASCII&#x27;</span>: <span class="hljs-literal">True</span>,<br>    <span class="hljs-comment"># 默认情况下 Flask 使用 ascii 编码来序列化对象。如果这个值被设置为 False ，</span><br>    <span class="hljs-comment"># Flask不会将其编码为 ASCII，并且按原样输出，返回它的 unicode 字符串。</span><br>    <span class="hljs-comment"># 比如 jsonfiy 会自动地采用 utf-8 来编码它然后才进行传输。</span><br>    <span class="hljs-string">&#x27;JSON_SORT_KEYS&#x27;</span>: <span class="hljs-literal">True</span>,<br>    <span class="hljs-comment">#默认情况下 Flask 按照 JSON 对象的键的顺序来序来序列化它。</span><br>    <span class="hljs-comment"># 这样做是为了确保键的顺序不会受到字典的哈希种子的影响，从而返回的值每次都是一致的，不会造成无用的额外 HTTP 缓存。</span><br>    <span class="hljs-comment"># 你可以通过修改这个配置的值来覆盖默认的操作。但这是不被推荐的做法因为这个默认的行为可能会给你在性能的代价上带来改善。</span><br>    <span class="hljs-string">&#x27;JSONIFY_PRETTYPRINT_REGULAR&#x27;</span>: <span class="hljs-literal">True</span>,<br>    <span class="hljs-string">&#x27;JSONIFY_MIMETYPE&#x27;</span>: <span class="hljs-string">&#x27;application/json&#x27;</span>,<br>    <span class="hljs-string">&#x27;TEMPLATES_AUTO_RELOAD&#x27;</span>: <span class="hljs-literal">None</span>,<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/songzhixue/p/11171458.html">https://www.cnblogs.com/songzhixue/p/11171458.html</a></p>
+<h3 id="重定向和转发"><a href="#重定向和转发" class="headerlink" title="重定向和转发"></a>重定向和转发</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">@app.route(<span class="hljs-params"><span class="hljs-string">&#x27;/redirect&#x27;</span></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">a_page</span>():<br>    <span class="hljs-comment">#站外</span><br>    <span class="hljs-comment">#return flask.redirect(&#x27;http://www.cctv.com&#x27;)</span><br>    <span class="hljs-comment">#站内</span><br>    <span class="hljs-keyword">return</span> flask.redirect(flask.url_for(<span class="hljs-string">&#x27;b_page&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+<p>那么问题来了:smirk:转发和重定向的区别是啥:</p>
+<p>转发就是将,请求所带的数据重新向站内的路由进行转发.</p>
+<p>重定向就是让用户用浏览器重新向目标网站重新发一遍请求</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>转发</th>
+<th>重定向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>跳转方式</td>
+<td>服务器端转发</td>
+<td>客户端转发</td>
+</tr>
+<tr>
+<td>客户端发送请求次数</td>
+<td>1次</td>
+<td>2次</td>
+</tr>
+<tr>
+<td>客户端地址栏是否改变</td>
+<td>不变</td>
+<td>变</td>
+</tr>
+<tr>
+<td>是否共享request域</td>
+<td>共享</td>
+<td>不共享（request域中的数据丢失），必须使用session传递属性</td>
+</tr>
+<tr>
+<td>是否共享response域</td>
+<td>共享</td>
+<td>不共享</td>
+</tr>
+<tr>
+<td>范围</td>
+<td>网站内</td>
+<td>可以跨站点</td>
+</tr>
+<tr>
+<td>JSP</td>
+<td>URL不可带参数</td>
+<td>URL可带参数</td>
+</tr>
+<tr>
+<td>是否隐藏路径</td>
+<td>隐藏</td>
+<td>不隐藏</td>
+</tr>
+</tbody></table>
+<h3 id="结合SQL"><a href="#结合SQL" class="headerlink" title="结合SQL"></a>结合SQL</h3><p>导入pymysql</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pymysql<br><br>db = pymysql.connect(host=<span class="hljs-string">&quot;localhost&quot;</span> 	<span class="hljs-comment">#设置ip</span><br>                     ,user=<span class="hljs-string">&quot;root&quot;</span>		<span class="hljs-comment">#设置用户名</span><br>                     ,password=<span class="hljs-string">&quot;123456&quot;</span>	<span class="hljs-comment">#设置密码</span><br>                     ,db=<span class="hljs-string">&quot;wodiu&quot;</span>)		<span class="hljs-comment">#设置数据库</span><br>cur = db.cursor()						<span class="hljs-comment">#获取一个游标</span><br>cur.execute(<span class="hljs-string">&quot;select * from aaa&quot;</span>)		<span class="hljs-comment">#执行语句</span><br>db.commit()								<span class="hljs-comment">#提交语句并执行</span><br><span class="hljs-type">List</span>=[]					<br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> cur.fetchall():				<span class="hljs-comment">#cur.fetchall是获取所有的数据</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(i))<br><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>db.rollback() #可以使用这条命令,如果发生异常时进行滚回</p>
+</blockquote>
+<p>下面时sql的查询操作</p>
+<ul>
+<li><strong>fetchone():</strong> 该方法获取下一个查询结果集。结果集是一个对象</li>
+<li><strong>fetchall():</strong> 接收全部的返回结果行.</li>
+<li><strong>rowcount:</strong> 这是一个只读属性，并返回执行execute()方法后影响的行数。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/">#Python</a>
+      
+        <a href="/tags/%E5%90%8E%E7%AB%AF/">#后端</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Flask搭建网站</div>
+      <div>http://example.com/2022/01/13/Flask搭建网站/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年1月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/01/13/Python-%E8%BF%9B%E7%A8%8B%EF%BC%81%E7%BA%BF%E7%A8%8B%EF%BC%81%EF%BC%81%E5%8D%8F%E7%A8%8B%EF%BC%81%EF%BC%81%EF%BC%81/" title="Python-进程！线程！！协程！！！">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Python-进程！线程！！协程！！！</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/10/SpringSecurity/" title="SpringSecurity">
+                        <span class="hidden-mobile">SpringSecurity</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.0/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"mPhovhHHyKg2LpAcQhS6tjAw-gzGzoHsz","appKey":"6W2dsSWjVfMOOkXrNbFWOSDN","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://mphovhhh.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

